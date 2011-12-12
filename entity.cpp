@@ -16,5 +16,5 @@ Entity::Entity(Grid *grid):m_x(0), m_y(0), m_grid(grid)
 
 void Entity::update()
 {
-
+ cout<<"entity update"<<endl;
 }
