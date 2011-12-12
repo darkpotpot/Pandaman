@@ -2,7 +2,7 @@ pyInc= '/usr/include/python2.6'
 pandaInc= '/usr/include/panda3d'
 pandaLib= '/usr/lib/panda3d'
 
-Program(['main.cpp', 'simu.cpp', 'entity.cpp'],
+Program(['main.cpp', 'simu.cpp', 'entity.cpp', 'grid.cpp'],
 	CCFLAGS=['-fPIC', '-O2'],
 	CPPPATH=[pyInc, pandaInc],
 	LIBPATH=pandaLib,

@@ -6,6 +6,7 @@
 
 #include "simu.h"
 #include "entity.h"
+#include "grid.h"
  
 int main(int argc, char *argv[]) {
     PandaFramework framework;
@@ -15,14 +16,14 @@ int main(int argc, char *argv[]) {
     // Get the camera and store it in a variable.
     //camera = window->get_camera_group();
     
-    //Grid grid = Grid();
+    Grid grid = Grid();
     //generate grid display
     SimulationTask simu_task = SimulationTask();
     //chartacter = ...
     //character.set_displayer(displayer)
     //
     //simu_task.addEntity(character)
-    Entity entity = Entity();
+    Entity entity = Entity(&grid);  
     simu_task.addEntity(entity);
     PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();     
     
