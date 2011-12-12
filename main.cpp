@@ -7,7 +7,9 @@
 #include "simu.h"
 #include "entity.h"
 #include "grid.h"
- 
+#include "grid_display.h"
+
+
 int main(int argc, char *argv[]) {
     PandaFramework framework;
     framework.open_framework(argc, argv);
@@ -15,8 +17,10 @@ int main(int argc, char *argv[]) {
     WindowFramework *window = framework.open_window();
     // Get the camera and store it in a variable.
     //camera = window->get_camera_group();
-    
+    //dump_to_stdout("test.xml");
     Grid grid = Grid();
+    grid.loadMap("resources/map/level01.tmx");
+    text_display(grid);
     //generate grid display
     SimulationTask simu_task = SimulationTask();
     //chartacter = ...
