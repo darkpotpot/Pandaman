@@ -8,13 +8,15 @@
 #include "entity.h"
 #include "grid.h"
 #include "grid_display.h"
-
-
+#include "controler.h"
+#include "character.h"
+ 
 int main(int argc, char *argv[]) {
     PandaFramework framework;
     framework.open_framework(argc, argv);
     framework.set_window_title("My Panda3D Window");
     WindowFramework *window = framework.open_window();
+    window->enable_keyboard(); 
     // Get the camera and store it in a variable.
     //camera = window->get_camera_group();
     //dump_to_stdout("test.xml");
@@ -27,8 +29,14 @@ int main(int argc, char *argv[]) {
     //character.set_displayer(displayer)
     //
     //simu_task.addEntity(character)
-    Entity entity = Entity(&grid);  
-    simu_task.addEntity(entity);
+    //Entity entity = Entity(&grid);  
+    Character c = Character(&grid);
+    //simu_task.addEntity(entity);
+    c.update();
+    ((Entity*)(&c))->update();
+    simu_task.addEntity(&c);
+    
+    Controler controler = Controler(framework, &c);
     PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();     
     
     taskMgr->add(&simu_task);

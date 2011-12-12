@@ -7,7 +7,7 @@ public:
     Entity();
     Entity(Grid *grid);
     Entity(int x, int y, Grid *grid);
-    void update();
+    virtual void update();
     //move to...
     //m_displayer.update(this)
     int m_x;

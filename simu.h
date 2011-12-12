@@ -6,13 +6,13 @@ class SimulationTask:public AsyncTask
 {
 public:
     SimulationTask();
-    void addEntity(Entity& entity);
+    void addEntity(Entity* entity);
     
 protected:
     virtual AsyncTask::DoneStatus do_task();
     
 private:
-    std::list<Entity> m_entity_list;
+    std::list<Entity*> m_entity_list;
 
 //entity list
 };
