@@ -28,7 +28,7 @@ void launchCommand(const Event * theEvent, void * data)
 Controler::Controler(PandaFramework &framework):m_character(NULL)
 { initCommands(framework); }
 
-Controler::Controler(PandaFramework &framework, Character* character):m_character(character)
+Controler::Controler(PandaFramework &framework, MainCharacter* character):m_character(character)
 { initCommands(framework); }
 
 void Controler::initCommands(PandaFramework &framework)
@@ -52,5 +52,5 @@ void Controler::apply_command(Command command)
     if (m_character!=NULL)
         { m_character->set_command(command); }
     else
-        { error_message("NULL Character in controler."); }
+        { error_message("NULL MainCharacter in controler."); }
 }
