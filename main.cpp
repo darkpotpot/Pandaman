@@ -11,6 +11,7 @@
 #include "controler.h"
 #include "character.h"
 #include "character_displayer.h"
+#include "cell_displayer.h"
  
 int main(int argc, char *argv[]) {
     PandaFramework framework;
@@ -24,6 +25,7 @@ int main(int argc, char *argv[]) {
     grid.loadMap("resources/map/level01.tmx");
     GridDisplayer gDisplayer = GridDisplayer(window);
     gDisplayer.display_grid(grid);
+    initCellElemDisplayers(grid, window, &framework);
 
     window->setup_trackball();
 

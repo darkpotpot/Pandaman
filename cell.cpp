@@ -1,11 +1,13 @@
 #include "cell.h"
-#include <iostream>
 
-using namespace std;
 
-bool CellElem::blocks(){return false;}
+bool CellElem::blocks(){
+    return false;
+}
 
-bool Wall::blocks(){return true;}
+bool Wall::blocks(){
+    return true;
+}
 
 Cell::Cell() {}
 
@@ -24,6 +26,8 @@ bool Cell::is_accessible(){
     return true;
 }
 
+vector<CellElem*> Cell::getCellElems(){
+    return mElem;
+}
 
-Wall::Wall() {}
 
