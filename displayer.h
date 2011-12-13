@@ -1,10 +1,15 @@
+#ifndef Displayer_H
+#define Displayer_H
+
+#include "displayable.h"
+
+class Entity;
+
 class Displayer
 {
-virtual int update(Entity& entity);
-}
+public:
+    Displayer();
+    virtual int update(Displayable* entity);
+};
 
-class CharacterDisplayer : public Displayer
-{
-virtual int update(Entity& entity);
-}
-
+#endif

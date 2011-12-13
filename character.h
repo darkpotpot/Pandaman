@@ -1,13 +1,13 @@
-#ifndef Character_H
-#define Character_H
+#ifndef MainCharacter_H
+#define MainCharacter_H
 #include "entity.h"
 #include "command.h"
 
-class Character:public Entity{
+class MainCharacter:public Entity{
 public:
-    Character();
-    Character(Grid *grid);
-    Character(int x, int y, Grid *grid);
+    MainCharacter();
+    MainCharacter(Grid *grid);
+    MainCharacter(int x, int y, Grid *grid);
     virtual void update();
     int set_command(Command command);
     

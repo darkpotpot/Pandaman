@@ -13,16 +13,16 @@ int print_message(string s)
     return 0;
 }
 
-Character::Character():Entity(), m_last_command(STAY)
+MainCharacter::MainCharacter():Entity(), m_last_command(STAY)
 {}
 
-Character::Character(Grid *grid):Entity(grid), m_last_command(STAY)
+MainCharacter::MainCharacter(Grid *grid):Entity(grid), m_last_command(STAY)
 {}
 
-Character::Character(int x, int y, Grid *grid):Entity(x, y, grid), m_last_command(STAY)
+MainCharacter::MainCharacter(int x, int y, Grid *grid):Entity(x, y, grid), m_last_command(STAY)
 {}
 
-void Character::update()
+void MainCharacter::update()
 {
     int x_dir = 0;
     int y_dir = 0;
@@ -32,32 +32,40 @@ void Character::update()
         {
            break;
         }
+        
         case MOVE_LEFT:
         {
-           print_message("MOVE_LEFT");
+           x_dir = -1;
            break;
         }
         case MOVE_RIGHT:
         {
-           print_message("MOVE_RIGHT");
+           x_dir = +1;
            break;
         }
         case MOVE_UP:
         {
-           print_message("MOVE_UP");
+           y_dir=+1;
            break;
         }
            case MOVE_DOWN:
         {
-           print_message("MOVE_DOWN");
+           y_dir = -1;
            break;
         }    
     }
     m_last_command = STAY;
-    
+    if (!(x_dir==0 && y_dir==0))
+    {
+        int new_x = m_x+x_dir;
+        int new_y = m_y+y_dir;
+        Entity::move_to_ifp(new_x, new_y );
+    }
+    Entity::update();
+
 }
 
-int Character::set_command(Command command)
+int MainCharacter::set_command(Command command)
 {
     m_last_command = command;
     return 0;
