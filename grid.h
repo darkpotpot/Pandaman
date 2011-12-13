@@ -14,6 +14,7 @@ class Grid
         bool loadMap(const char* pMapname);
         int mWidth;
         int mHeight;
+        vector<CellElem*> getCellElems(int x, int y);
     private:
         vector<vector<Cell*> > mCells;
 };

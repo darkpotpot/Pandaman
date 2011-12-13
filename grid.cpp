@@ -2,7 +2,8 @@
 #include "assert.h"
 #include "tinyxml/tinyxml.h"
 #include "cell.h"
-
+#include <iostream>
+using namespace std;
 
 Grid::Grid() {}
 
@@ -23,20 +24,21 @@ bool Grid::loadMap(const char* pMapname){
     for (int i = 0; i < mHeight; ++i){
         mCells[i].resize(mWidth);
     }
-    TiXmlHandle tileHandle = docHandle.FirstChild("map").FirstChild("layer").FirstChild("data");
-    TiXmlElement* tileElem;
+    TiXmlElement* tileElem =docHandle.FirstChild("map").FirstChild("layer").FirstChild("data").FirstChild("tile").ToElement() ;
     assert (elem);
-    for (int i=0; i < mHeight; i++){
+    for (int i=mHeight - 1; i > -1; i--){ //panda is not sorted in the same order than the map
         for (int j=0; j < mWidth; j++){
-            tileElem = tileHandle.ChildElement("tile", i*mHeight + j).ToElement();
-            mCells[i][j] = new Cell();
+            mCells[j][i] = new Cell();
             switch (atoi(tileElem->Attribute("gid"))){
                 case 1:
-                    mCells[i][j]->addElem(new Wall());
+                    mCells[j][i]->addElem(new Wall());
                     break;
             }
+            tileElem = tileElem->NextSiblingElement();
         }
     }
-    // add call to the displayer
 }
 
+vector<CellElem*> Grid::getCellElems(int x, int y){
+    return mCells[x][y]->getCellElems();
+}
