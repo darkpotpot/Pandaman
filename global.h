@@ -1,0 +1,1 @@
+int CASE_RATIO = 10;

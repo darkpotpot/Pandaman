@@ -22,7 +22,12 @@ int main(int argc, char *argv[]) {
     //dump_to_stdout("test.xml");
     Grid grid = Grid();
     grid.loadMap("resources/map/level01.tmx");
-    text_display(grid);
+    GridDisplayer gDisplayer = GridDisplayer(window);
+    gDisplayer.display_grid(grid);
+
+    window->setup_trackball();
+
+    //text_display(grid);
     //generate grid display
     SimulationTask simu_task = SimulationTask();
     //chartacter = ...

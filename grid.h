@@ -3,6 +3,7 @@
 
 #include "cell.h"
 #include <vector>
+
 using std::vector;
 
 class Grid

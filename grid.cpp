@@ -37,5 +37,6 @@ bool Grid::loadMap(const char* pMapname){
             }
         }
     }
+    // add call to the displayer
 }
 
