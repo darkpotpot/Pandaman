@@ -46,7 +46,7 @@ int CharacterDisplayer::update(Displayable* entity)
         {head=180.;}
     m_drawing.set_hpr( head,0.,0.);
     //m_window->load_model(m_drawing, "panda-walk4");
-    m_window->loop_animations(0);
+    //m_window->loop_animations(0);
     
     return 0;
 }

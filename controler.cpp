@@ -33,10 +33,10 @@ Controler::Controler(PandaFramework &framework, MainCharacter* character):m_char
 
 void Controler::initCommands(PandaFramework &framework)
 {	
-    m_command_list.push_back(CommandLauncher("q","left", this, MOVE_LEFT));
-    m_command_list.push_back(CommandLauncher("d","right", this, MOVE_RIGHT));
-    m_command_list.push_back(CommandLauncher("z","up", this, MOVE_UP));
-    m_command_list.push_back(CommandLauncher("s","down", this, MOVE_DOWN));
+    m_command_list.push_back(CommandLauncher("arrow_left","left", this, MOVE_LEFT));
+    m_command_list.push_back(CommandLauncher("arrow_right","right", this, MOVE_RIGHT));
+    m_command_list.push_back(CommandLauncher( "arrow_up","up", this, MOVE_UP));
+    m_command_list.push_back(CommandLauncher("arrow_down","down", this, MOVE_DOWN));
     std::list<CommandLauncher>::iterator it;
     for (it=m_command_list.begin(); it!=m_command_list.end();it++)
     {   
