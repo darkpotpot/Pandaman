@@ -37,6 +37,10 @@ void Controler::initCommands(PandaFramework &framework)
     m_command_list.push_back(CommandLauncher("arrow_right","right", this, MOVE_RIGHT));
     m_command_list.push_back(CommandLauncher( "arrow_up","up", this, MOVE_UP));
     m_command_list.push_back(CommandLauncher("arrow_down","down", this, MOVE_DOWN));
+    m_command_list.push_back(CommandLauncher("arrow_left-repeat","left", this, MOVE_LEFT));
+    m_command_list.push_back(CommandLauncher("arrow_right-repeat","right", this, MOVE_RIGHT));
+    m_command_list.push_back(CommandLauncher( "arrow_up-repeat","up", this, MOVE_UP));
+    m_command_list.push_back(CommandLauncher("arrow_down-repeat","down", this, MOVE_DOWN));
     std::list<CommandLauncher>::iterator it;
     for (it=m_command_list.begin(); it!=m_command_list.end();it++)
     {   
