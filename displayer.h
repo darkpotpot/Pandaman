@@ -3,7 +3,7 @@
 
 #include "displayable.h"
 
-class Entity;
+class Displayable;
 
 class Displayer
 {
