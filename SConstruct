@@ -16,7 +16,8 @@ Program(['main.cpp',
          'tinyxml/tinyxmlerror.cpp',
 		 'displayer.cpp', 
 		 'character_displayer.cpp', 
-		 'displayable.cpp'
+		 'displayable.cpp',
+		 'global.cpp'
          ],
 	CCFLAGS=['-fPIC', '-O2'],
 	CPPPATH=[pyInc, pandaInc],

@@ -3,6 +3,8 @@
 
 #include "windowFramework.h"
 #include "pandaFramework.h"
+#include "auto_bind.h"
+#include "animControlCollection.h"
 #include "displayer.h"
 #include "nodePath.h"
 #include <string>
@@ -19,6 +21,7 @@ private:
     WindowFramework *m_window;
     PandaFramework *m_framework;
     string m_model_name;
+    AnimControlCollection m_anim_collection;
 };
 
 

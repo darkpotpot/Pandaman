@@ -4,6 +4,8 @@
 #include "texturePool.h"
 #include "global.h"
 
+extern int CASE_RATIO;
+
 GridDisplayer::GridDisplayer(WindowFramework* window){
     mWindow = window;
     mTerrain = new GeoMipTerrain("mySimpleTerrain");
