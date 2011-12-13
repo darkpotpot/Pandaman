@@ -7,6 +7,7 @@
 #include "simu.h"
 #include "entity.h"
 #include "grid.h"
+#include "grid_display.h"
 #include "controler.h"
 #include "character.h"
 #include "character_displayer.h"
@@ -19,9 +20,9 @@ int main(int argc, char *argv[]) {
     window->enable_keyboard(); 
     // Get the camera and store it in a variable.
 
-
-    
     Grid grid = Grid();
+    grid.loadMap("resources/map/level01.tmx");
+    text_display(grid);
     //generate grid display
     SimulationTask simu_task = SimulationTask();
     //chartacter = ...
@@ -30,7 +31,7 @@ int main(int argc, char *argv[]) {
     //simu_task.addEntity(character)
     //Entity entity = Entity(&grid);  
     //simu_task.addEntity(entity);
-    MainCharacter c = MainCharacter(&grid);
+    MainCharacter c = MainCharacter(1,1,&grid);
     simu_task.addEntity(&c);
     CharacterDisplayer char_displayer = CharacterDisplayer("panda-model", window, &framework);
     c.set_displayer(&char_displayer);

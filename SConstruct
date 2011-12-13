@@ -2,7 +2,22 @@ pyInc= '/usr/include/python2.6'
 pandaInc= '/usr/include/panda3d'
 pandaLib= '/usr/lib/panda3d'
 
-Program(['main.cpp', 'simu.cpp', 'entity.cpp', 'grid.cpp', 'controler.cpp', 'character.cpp', 'displayer.cpp', 'character_displayer.cpp', 'displayable.cpp'],
+Program(['main.cpp',
+         'simu.cpp', 
+         'entity.cpp', 
+         'grid.cpp', 
+         'cell.cpp', 
+         'grid_display.cpp', 
+         'controler.cpp',
+         'character.cpp',
+         'tinyxml/tinyxml.cpp', 
+         'tinyxml/tinystr.cpp', 
+         'tinyxml/tinyxmlparser.cpp', 
+         'tinyxml/tinyxmlerror.cpp',
+		 'displayer.cpp', 
+		 'character_displayer.cpp', 
+		 'displayable.cpp'
+         ],
 	CCFLAGS=['-fPIC', '-O2'],
 	CPPPATH=[pyInc, pandaInc],
 	LIBPATH=pandaLib,
