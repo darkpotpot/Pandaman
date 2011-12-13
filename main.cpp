@@ -3,6 +3,7 @@
  
 #include "genericAsyncTask.h"
 #include "asyncTaskManager.h"
+#include "cIntervalManager.h"
 
 #include "simu.h"
 #include "entity.h"
@@ -12,6 +13,13 @@
 #include "character.h"
 #include "character_displayer.h"
  
+
+AsyncTask::DoneStatus update_lerp(GenericAsyncTask* task, void* data) {
+    ((CIntervalManager*)data)->step();
+    return AsyncTask::DS_cont;
+    }
+    
+    
 int main(int argc, char *argv[]) {
     PandaFramework framework;
     framework.open_framework(argc, argv);
@@ -29,7 +37,7 @@ int main(int argc, char *argv[]) {
 
     //text_display(grid);
     //generate grid display
-    SimulationTask simu_task = SimulationTask();
+    SimulationTask simu_task = SimulationTask(ClockObject::get_global_clock());
     //chartacter = ...
     //character.set_displayer(displayer)
     //
@@ -48,6 +56,10 @@ int main(int argc, char *argv[]) {
     NodePath camera = window->get_camera_group();
     camera.set_pos(0.,0.,500.);
     camera.set_hpr(0,-90.,0);
+    //--
+    taskMgr->add(new GenericAsyncTask("Update lerp",
+    &update_lerp, (void*) CIntervalManager::get_global_ptr()));
+    
     // Run the engine.
     framework.main_loop();
     // Shut down the engine when done.
