@@ -21,7 +21,7 @@ CharacterDisplayer::CharacterDisplayer(string model_name, WindowFramework *windo
 
     m_drawing = window->load_model(framework->get_models(), model_name);
     m_drawing.reparent_to(m_window->get_render());
-    m_drawing.set_scale(0.01, 0.01, 0.01);
+    m_drawing.set_scale(0.008, 0.008, 0.008);
     window->load_model(m_drawing, "panda-walk4");
     
     auto_bind(m_drawing.node(), m_anim_collection);
