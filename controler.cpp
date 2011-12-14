@@ -60,7 +60,36 @@ void Controler::initCommands(PandaFramework &framework)
         framework.define_key((*it)->get_key(), (*it)->get_name(), launchCommand,  (*it));
     }
     //framework.define_key("q","left", launchCommand,  &(m_command_list.back()));
+    set_command_state(MOVE_LEFT, false);
+    set_command_state(MOVE_RIGHT, false);
+    set_command_state(MOVE_UP, false);
+    set_command_state(MOVE_DOWN, false);
+}
 
+void Controler::set_command_state(Command command, bool state)
+{
+    m_command_state[command] = state;
+}
+
+bool Controler::get_command_state(Command command)
+{
+    return m_command_state[command];
+}
+void Controler::update()
+{
+    if (!m_character->command_list_empty())
+        {return; }
+    else
+        {
+        std::map<Command, bool>::const_iterator it;
+        for(it=m_command_state.begin();it!=m_command_state.end();it++)
+            {
+            if (it->second)
+                {
+                m_character->set_command(it->first);
+                }
+            } 
+        }
 }
 
 Controler::~Controler()
@@ -75,6 +104,7 @@ Controler::~Controler()
 
 void Controler::apply_command(Command command)
 {
+    set_command_state(command, true);
     if (m_character!=NULL)
         { m_character->set_command(command); }
     else
@@ -83,6 +113,7 @@ void Controler::apply_command(Command command)
 
 void Controler::cancel_command(Command command)
 {
+    set_command_state(command, false);
     if (m_character!=NULL)
         { 
         if (m_character->get_command()==command)

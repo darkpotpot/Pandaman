@@ -36,22 +36,24 @@ int main(int argc, char *argv[]) {
     initCellElemDisplayers(grid, window, &framework);
 
     window->setup_trackball();
-
+    
+    MainCharacter c = MainCharacter(1,1,&grid);
+    CharacterDisplayer char_displayer = CharacterDisplayer("panda-model", window, &framework);
+    c.set_displayer(&char_displayer);
+    //window->setup_trackball();
+    Controler controler = Controler(framework, &c);
     //text_display(grid);
     //generate grid display
-    SimulationTask simu_task = SimulationTask(ClockObject::get_global_clock());
+    SimulationTask simu_task = SimulationTask(ClockObject::get_global_clock(), &controler);
     //chartacter = ...
     //character.set_displayer(displayer)
     //
     //simu_task.addEntity(character)
     //Entity entity = Entity(&grid);  
     //simu_task.addEntity(entity);
-    MainCharacter c = MainCharacter(1,1,&grid);
+
     simu_task.addEntity(&c);
-    CharacterDisplayer char_displayer = CharacterDisplayer("panda-model", window, &framework);
-    c.set_displayer(&char_displayer);
-    //window->setup_trackball();
-    Controler controler = Controler(framework, &c);
+
     PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();     
 
     taskMgr->add(&simu_task);

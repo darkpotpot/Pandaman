@@ -13,20 +13,27 @@ int print_message(string s)
     return 0;
 }
 
-MainCharacter::MainCharacter():Entity(), m_last_command(STAY)
+MainCharacter::MainCharacter():Entity()
 {}
 
-MainCharacter::MainCharacter(Grid *grid):Entity(grid), m_last_command(STAY)
+MainCharacter::MainCharacter(Grid *grid):Entity(grid)
 {}
 
-MainCharacter::MainCharacter(int x, int y, Grid *grid):Entity(x, y, grid), m_last_command(STAY)
+MainCharacter::MainCharacter(int x, int y, Grid *grid):Entity(x, y, grid)
 {}
 
 void MainCharacter::update()
 {
     int x_dir = 0;
     int y_dir = 0;
-    switch(m_last_command)
+    Command last_command = STAY;
+    if (!m_last_command.empty())
+    {
+        last_command = m_last_command.front();
+        m_last_command.pop_front();
+    }
+    
+    switch(last_command)
     {
         case STAY:
         {
@@ -67,11 +74,16 @@ void MainCharacter::update()
 
 int MainCharacter::set_command(Command command)
 {
-    m_last_command = command;
+    m_last_command.push_back(command);
     return 0;
 }
 
 Command MainCharacter::get_command()
 {
-    return m_last_command;
+    return m_last_command.back();
+}
+
+bool MainCharacter::command_list_empty()
+{
+return m_last_command.empty();
 }

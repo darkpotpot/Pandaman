@@ -2,6 +2,7 @@
 #define Controler_H
 #include "pandaFramework.h"
 #include "character.h"
+#include <map>
 
 class CommandLauncher;
 
@@ -14,10 +15,15 @@ public:
     void moveLeft(const Event * theEvent, void * data);
     void apply_command(Command command);
     void cancel_command(Command command);
+    void update();
 private:
+    void set_command_state(Command command, bool state);
+    bool get_command_state(Command command);
+    
     void initCommands(PandaFramework &framework);
     MainCharacter *m_character;
     std::list<CommandLauncher*> m_command_list;
+    std::map<Command, bool> m_command_state;
     
 };
 
