@@ -16,11 +16,11 @@
 extern int CASE_RATIO;
 extern double UPDATE_TIME;
 
-CharacterDisplayer::CharacterDisplayer(string model_name, WindowFramework *window, PandaFramework *framework)
-:m_model_name(model_name),m_window(window), m_framework(framework), m_PosPace(NULL)
+CharacterDisplayer::CharacterDisplayer(string model_name, WindowFramework *window, ModelManager* model_manager)
+:m_model_name(model_name),m_window(window), m_PosPace(NULL)
 {
 
-    m_drawing = window->load_model(framework->get_models(), model_name);
+    m_drawing = model_manager->loadModel(model_name);
     m_drawing.reparent_to(m_window->get_render());
     m_drawing.set_scale(0.008, 0.008, 0.008);
     window->load_model(m_drawing, "panda-walk4");

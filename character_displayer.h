@@ -10,18 +10,18 @@
 #include "displayer.h"
 #include "nodePath.h"
 #include <string>
+#include "model_manager.h"
 
 
 
 class CharacterDisplayer : public Displayer
 {
 public:
-    CharacterDisplayer(string model_name, WindowFramework *window, PandaFramework *framework);
+    CharacterDisplayer(string model_name, WindowFramework *window, ModelManager *model_manager);
     virtual int update(Displayable* entity);
 private:
     NodePath m_drawing;
     WindowFramework *m_window;
-    PandaFramework *m_framework;
     string m_model_name;
     AnimControlCollection m_anim_collection;
     PT(CMetaInterval) m_PosPace;

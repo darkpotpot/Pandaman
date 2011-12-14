@@ -14,6 +14,7 @@
 #include "character_displayer.h"
 #include "cell_displayer.h"
 #include "world_camera.h"
+#include "model_manager.h"
 
 
 AsyncTask::DoneStatus update_lerp(GenericAsyncTask* task, void* data) {
@@ -29,16 +30,18 @@ int main(int argc, char *argv[]) {
     WindowFramework *window = framework.open_window();
     window->enable_keyboard();
 
+    ModelManager model_manager = ModelManager(window, &framework);
+
     Grid grid = Grid();
     grid.loadMap("resources/map/level01.tmx");
     GridDisplayer gDisplayer = GridDisplayer(window);
     gDisplayer.display_grid(grid);
-    initCellElemDisplayers(grid, window, &framework);
+    initCellElemDisplayers(grid, window, &model_manager);
     WorldCamera camera = WorldCamera(window);
     camera.seeAll(grid);
 
     MainCharacter c = MainCharacter(1,1,&grid);
-    CharacterDisplayer char_displayer = CharacterDisplayer("panda-model", window, &framework);
+    CharacterDisplayer char_displayer = CharacterDisplayer("panda-model", window, &model_manager);
     c.set_displayer(&char_displayer);
     Controler controler = Controler(framework, &c);
     SimulationTask simu_task = SimulationTask(ClockObject::get_global_clock(), &controler);

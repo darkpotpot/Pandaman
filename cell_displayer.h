@@ -5,18 +5,16 @@
 #include "grid.h"
 #include <string>
 #include "windowFramework.h"
-#include "pandaFramework.h"
+#include "model_manager.h"
+
 
 class CellElemDisplayer:public Displayer{
     public:
-        CellElemDisplayer(int x, int y, string model_name, WindowFramework *window, PandaFramework *framework);
+        CellElemDisplayer(int x, int y, string model_name, WindowFramework* window, ModelManager* model_manager);
     private:
-        NodePath m_drawing;
-        WindowFramework *m_window;
-        PandaFramework *m_framework;
-        string m_model_name;
+        NodePath mDrawing;
 };
 
-void initCellElemDisplayers(Grid& grid, WindowFramework *window, PandaFramework *framework);
+void initCellElemDisplayers(Grid& grid, WindowFramework *window, ModelManager *model_manager);
 
 #endif
