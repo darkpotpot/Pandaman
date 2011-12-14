@@ -2,26 +2,33 @@
 #include "pandaFramework.h"
 #include "auto_bind.h"
 
+
+#include "cLerpNodePathInterval.h"
+#include "cMetaInterval.h"
+
 #include "animControlCollection.h"
 #include "character_displayer.h"
 #include "global.h"
 #include <string>
+#include <cmath>
 
 extern int CASE_RATIO;
+extern double UPDATE_TIME;
 
 CharacterDisplayer::CharacterDisplayer(string model_name, WindowFramework *window, PandaFramework *framework)
-:m_model_name(model_name),m_window(window), m_framework(framework)
+:m_model_name(model_name),m_window(window), m_framework(framework), m_PosPace(NULL)
 {
 
-     m_drawing = window->load_model(framework->get_models(), model_name);
-     m_drawing.reparent_to(m_window->get_render());
-     m_drawing.set_scale(0.01, 0.01, 0.01);
-     window->load_model(m_drawing, "panda-walk4");
-     
-     auto_bind(m_drawing.node(), m_anim_collection);
-     m_anim_collection.loop("panda_soft", true);
-     m_anim_collection.loop_all(true);
-     //anim_collection.pose("panda_soft", 5);
+    m_drawing = window->load_model(framework->get_models(), model_name);
+    m_drawing.reparent_to(m_window->get_render());
+    m_drawing.set_scale(0.008, 0.008, 0.008);
+    window->load_model(m_drawing, "panda-walk4");
+    
+    auto_bind(m_drawing.node(), m_anim_collection);
+    m_anim_collection.loop("panda_soft", true);
+    m_anim_collection.loop_all(true);
+    //anim_collection.pose("panda_soft", 5);
+    m_PosPace = new CMetaInterval("pandaPace");
 }
 
 
@@ -33,20 +40,76 @@ int CharacterDisplayer::update(Displayable* entity)
     float drawing_y = m_drawing.get_y();
     if (x==drawing_x&&y==drawing_y)
         {return 0;
-            }
-    m_drawing.set_pos( x, y, 0.);
-    float head =m_drawing.get_hpr().get_x();
-    if (drawing_x>x)
-        {head=-90.;}
-    if (drawing_x<x)
-        {head=90.;}
-    if (drawing_y>y)
-        {head=0.;}
-    if (drawing_y<y)
-        {head=180.;}
-    m_drawing.set_hpr( head,0.,0.);
-    //m_window->load_model(m_drawing, "panda-walk4");
-    //m_window->loop_animations(0);
-    
+        }
+    update_pos(LPoint3f(x, y, 0));    
     return 0;
 }
+
+void CharacterDisplayer::update_pos(LPoint3f new_pos)
+{
+    LPoint3f old_pos = m_drawing.get_pos();
+    if (m_PosPace!=NULL)
+    {
+        m_PosPace->finish();
+        m_PosPace->clear_intervals();
+    }
+    LPoint3f old_hpr=m_drawing.get_hpr();
+    LVector3f dir = new_pos-old_pos;
+    float diff_x =dir.get_x();
+    float diff_y = dir.get_y();
+
+    float head =m_drawing.get_hpr().get_x();
+    if (!(diff_x==0&&diff_y==0))
+    {
+        if (abs(diff_x)>abs(diff_y))
+        {
+        if (diff_x>0)
+            {head=90.;}
+        else
+            {head=-90.;}
+        }
+        else
+        {
+        if (diff_y>0)
+            {head=180.;}
+        else
+            {head=0.;}
+        }
+    }
+
+    LPoint3f new_hpr = LPoint3f(head, 0.,0.);
+    if (old_hpr.get_x()-new_hpr.get_x()>180)
+        {old_hpr = LPoint3f(old_hpr.get_x()-360.,0.,0.);
+        }
+    if (old_hpr.get_x()-new_hpr.get_x()<-180)
+        {old_hpr = LPoint3f(old_hpr.get_x()+360.,0.,0.);
+        }
+
+    double pos_update_time = UPDATE_TIME;
+    if (old_hpr!=new_hpr)
+    {
+        PT(CLerpNodePathInterval) hprInterval =new CLerpNodePathInterval("pandaPosInterval1",
+                                                 pos_update_time*0.50, CLerpInterval::BT_no_blend,//CLerpInterval::BT_ease_in_out,
+                                                 true, false, m_drawing, NodePath());
+                                                 
+        hprInterval->set_start_hpr(old_hpr);
+        hprInterval->set_end_hpr(new_hpr);
+        m_PosPace->add_c_interval(hprInterval, 0, CMetaInterval::RS_previous_end);
+        pos_update_time = pos_update_time*0.5;
+    }
+    
+    PT(CLerpNodePathInterval) posInterval =new CLerpNodePathInterval("pandaPosInterval1",
+                                             pos_update_time, CLerpInterval::BT_no_blend,//CLerpInterval::BT_ease_in_out,
+                                             true, false, m_drawing, NodePath());
+
+    
+    posInterval->set_start_pos(old_pos);
+    posInterval->set_end_pos(new_pos);
+    
+
+    m_PosPace->add_c_interval(posInterval, 0, CMetaInterval::RS_previous_end);
+
+    m_PosPace->start(0., UPDATE_TIME, 1.);
+    //m_PosPace->loop();
+
+ }   

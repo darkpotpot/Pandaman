@@ -54,7 +54,7 @@ void MainCharacter::update()
            break;
         }    
     }
-    m_last_command = STAY;
+    //m_last_command = STAY;
     if (!(x_dir==0 && y_dir==0))
     {
         int new_x = m_x+x_dir;
@@ -69,4 +69,9 @@ int MainCharacter::set_command(Command command)
 {
     m_last_command = command;
     return 0;
+}
+
+Command MainCharacter::get_command()
+{
+    return m_last_command;
 }

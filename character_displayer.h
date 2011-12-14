@@ -5,6 +5,8 @@
 #include "pandaFramework.h"
 #include "auto_bind.h"
 #include "animControlCollection.h"
+#include "cLerpNodePathInterval.h"
+#include "cMetaInterval.h"
 #include "displayer.h"
 #include "nodePath.h"
 #include <string>
@@ -22,6 +24,10 @@ private:
     PandaFramework *m_framework;
     string m_model_name;
     AnimControlCollection m_anim_collection;
+    PT(CMetaInterval) m_PosPace;
+    void update_pos(LPoint3f new_pos);
+    
+    
 };
 
 

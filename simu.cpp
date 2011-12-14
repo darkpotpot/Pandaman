@@ -1,16 +1,41 @@
 #include "simu.h"
+#include "clockObject.h"
 //#include "entity.h"
 //#include <list>
 
-SimulationTask::SimulationTask()
+
+
+SimulationTask::SimulationTask():m_global_clock(NULL), m_last_update_time(0.)
+{}
+
+SimulationTask::SimulationTask(ClockObject *global_clock):m_global_clock(global_clock), m_last_update_time(0.)
 {}
 
 void SimulationTask::addEntity(Entity* entity)
 {m_entity_list.push_back(entity);
 }
 
+double SimulationTask::get_time()
+{
+    if (m_global_clock!=NULL)
+        {return m_global_clock->get_frame_time();}
+    else
+        {return 0.;}
+}
+
 AsyncTask::DoneStatus SimulationTask::do_task()
 {
+    double frame_time = get_time();
+    if (frame_time<m_last_update_time+UPDATE_TIME)
+        {return AsyncTask::DS_cont;
+        }
+    //cout<<"time ="<<frame_time-m_last_update_time<<endl;
+    m_last_update_time = frame_time;
+
+    //while((m_last_update_time<frame_time+UPDATE_TIME)&&UPDATE_TIME!=0.)
+        //{
+        //m_last_update_time = m_last_update_time+UPDATE_TIME;
+        //}
     std::list<Entity*>::iterator it;
     for (it=m_entity_list.begin(); it!=m_entity_list.end();it++)
         {
