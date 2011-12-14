@@ -1,6 +1,6 @@
 #include "pandaFramework.h"
 #include "pandaSystem.h"
- 
+
 #include "genericAsyncTask.h"
 #include "asyncTaskManager.h"
 #include "cIntervalManager.h"
@@ -13,57 +13,43 @@
 #include "character.h"
 #include "character_displayer.h"
 #include "cell_displayer.h"
- 
+#include "world_camera.h"
+
 
 AsyncTask::DoneStatus update_lerp(GenericAsyncTask* task, void* data) {
     ((CIntervalManager*)data)->step();
     return AsyncTask::DS_cont;
     }
-    
-    
+
+
 int main(int argc, char *argv[]) {
     PandaFramework framework;
     framework.open_framework(argc, argv);
     framework.set_window_title("My Panda3D Window");
     WindowFramework *window = framework.open_window();
-    window->enable_keyboard(); 
-    // Get the camera and store it in a variable.
+    window->enable_keyboard();
 
     Grid grid = Grid();
     grid.loadMap("resources/map/level01.tmx");
     GridDisplayer gDisplayer = GridDisplayer(window);
     gDisplayer.display_grid(grid);
     initCellElemDisplayers(grid, window, &framework);
+    WorldCamera camera = WorldCamera(window);
+    camera.seeAll(grid);
 
-    window->setup_trackball();
-    
     MainCharacter c = MainCharacter(1,1,&grid);
     CharacterDisplayer char_displayer = CharacterDisplayer("panda-model", window, &framework);
     c.set_displayer(&char_displayer);
-    //window->setup_trackball();
     Controler controler = Controler(framework, &c);
-    //text_display(grid);
-    //generate grid display
     SimulationTask simu_task = SimulationTask(ClockObject::get_global_clock(), &controler);
-    //chartacter = ...
-    //character.set_displayer(displayer)
-    //
-    //simu_task.addEntity(character)
-    //Entity entity = Entity(&grid);  
-    //simu_task.addEntity(entity);
-
     simu_task.addEntity(&c);
 
-    PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();     
+    PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();
 
     taskMgr->add(&simu_task);
-    NodePath camera = window->get_camera_group();
-    camera.set_pos(0.,0.,500.);
-    camera.set_hpr(0,-90.,0);
     //--
-    taskMgr->add(new GenericAsyncTask("Update lerp",
-    &update_lerp, (void*) CIntervalManager::get_global_ptr()));
-    
+    taskMgr->add(new GenericAsyncTask("Update lerp", &update_lerp, (void*) CIntervalManager::get_global_ptr()));
+
     // Run the engine.
     framework.main_loop();
     // Shut down the engine when done.
