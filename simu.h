@@ -1,4 +1,5 @@
 #include "entity.h"
+#include "controler.h"
 #include "asyncTask.h"
 #include "clockObject.h"
 #include "global.h"
@@ -9,7 +10,7 @@ class SimulationTask:public AsyncTask
 {
 public:
     SimulationTask();
-    SimulationTask(ClockObject *global_clock);
+    SimulationTask(ClockObject *global_clock, Controler *controler);
     void addEntity(Entity* entity);
     
 protected:
@@ -20,6 +21,7 @@ private:
     std::list<Entity*> m_entity_list;
     ClockObject *m_global_clock;
     double get_time();
+    Controler *m_controler;
 
 //entity list
 };

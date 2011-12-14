@@ -1,6 +1,6 @@
 #include "pandaFramework.h"
 #include "pandaSystem.h"
- 
+
 #include "genericAsyncTask.h"
 #include "asyncTaskManager.h"
 #include "cIntervalManager.h"
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     framework.open_framework(argc, argv);
     framework.set_window_title("My Panda3D Window");
     WindowFramework *window = framework.open_window();
-    window->enable_keyboard(); 
+    window->enable_keyboard();
 
     Grid grid = Grid();
     grid.loadMap("resources/map/level01.tmx");
@@ -37,18 +37,19 @@ int main(int argc, char *argv[]) {
     WorldCamera camera = WorldCamera(window);
     camera.seeAll(grid);
 
-    SimulationTask simu_task = SimulationTask(ClockObject::get_global_clock());
     MainCharacter c = MainCharacter(1,1,&grid);
-    simu_task.addEntity(&c);
     CharacterDisplayer char_displayer = CharacterDisplayer("panda-model", window, &framework);
     c.set_displayer(&char_displayer);
     Controler controler = Controler(framework, &c);
-    PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();     
+    SimulationTask simu_task = SimulationTask(ClockObject::get_global_clock(), &controler);
+    simu_task.addEntity(&c);
+
+    PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();
 
     taskMgr->add(&simu_task);
     //--
     taskMgr->add(new GenericAsyncTask("Update lerp", &update_lerp, (void*) CIntervalManager::get_global_ptr()));
-    
+
     // Run the engine.
     framework.main_loop();
     // Shut down the engine when done.

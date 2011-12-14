@@ -5,10 +5,10 @@
 
 
 
-SimulationTask::SimulationTask():m_global_clock(NULL), m_last_update_time(0.)
+SimulationTask::SimulationTask():m_global_clock(NULL), m_last_update_time(0.), m_controler(NULL)
 {}
 
-SimulationTask::SimulationTask(ClockObject *global_clock):m_global_clock(global_clock), m_last_update_time(0.)
+SimulationTask::SimulationTask(ClockObject *global_clock, Controler *controler):m_global_clock(global_clock), m_last_update_time(0.), m_controler(controler)
 {}
 
 void SimulationTask::addEntity(Entity* entity)
@@ -29,13 +29,8 @@ AsyncTask::DoneStatus SimulationTask::do_task()
     if (frame_time<m_last_update_time+UPDATE_TIME)
         {return AsyncTask::DS_cont;
         }
-    //cout<<"time ="<<frame_time-m_last_update_time<<endl;
+    m_controler->update();
     m_last_update_time = frame_time;
-
-    //while((m_last_update_time<frame_time+UPDATE_TIME)&&UPDATE_TIME!=0.)
-        //{
-        //m_last_update_time = m_last_update_time+UPDATE_TIME;
-        //}
     std::list<Entity*>::iterator it;
     for (it=m_entity_list.begin(); it!=m_entity_list.end();it++)
         {

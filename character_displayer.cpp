@@ -7,6 +7,7 @@
 #include "cMetaInterval.h"
 
 #include "animControlCollection.h"
+#include "animControl.h"
 #include "character_displayer.h"
 #include "global.h"
 #include <string>
@@ -27,6 +28,7 @@ CharacterDisplayer::CharacterDisplayer(string model_name, WindowFramework *windo
     auto_bind(m_drawing.node(), m_anim_collection);
     m_anim_collection.loop("panda_soft", true);
     m_anim_collection.loop_all(true);
+    //AnimControl = m_anim_collection.find_anim("panda-walk4");
     //anim_collection.pose("panda_soft", 5);
     m_PosPace = new CMetaInterval("pandaPace");
 }
