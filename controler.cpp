@@ -114,11 +114,11 @@ void Controler::apply_command(Command command)
 void Controler::cancel_command(Command command)
 {
     set_command_state(command, false);
-    if (m_character!=NULL)
-        { 
-        if (m_character->get_command()==command)
-            { m_character->set_command(STAY); }
-        }
-    else
-        { error_message("NULL MainCharacter in controler."); }
+    //if (m_character!=NULL)
+        //{ 
+        //if (m_character->get_command()==command)
+            //{ m_character->set_command(STAY); }
+        //}
+    //else
+        //{ error_message("NULL MainCharacter in controler."); }
 }
