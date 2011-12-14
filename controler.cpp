@@ -63,6 +63,15 @@ void Controler::initCommands(PandaFramework &framework)
 
 }
 
+Controler::~Controler()
+{
+    std::list<CommandLauncher*>::iterator it;
+    for (it=m_command_list.begin(); it!=m_command_list.end();it++)
+    {   
+        delete *it;
+    }  
+    m_command_list.clear();
+}
 
 void Controler::apply_command(Command command)
 {

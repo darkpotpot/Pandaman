@@ -10,6 +10,7 @@ class Controler
 public:
     Controler(PandaFramework &framework);
     Controler(PandaFramework &framework, MainCharacter* character);
+    ~Controler();
     void moveLeft(const Event * theEvent, void * data);
     void apply_command(Command command);
     void cancel_command(Command command);
