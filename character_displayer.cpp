@@ -42,9 +42,9 @@ CharacterDisplayer::CharacterDisplayer(string model_name, WindowFramework *windo
     m_PosPace = new CMetaInterval("pandaPace");
 }
 
-float max(float x, float y)
+/*float max(float x, float y)
 {if(x>y) {return x;}
- else    {return y;}}
+ else    {return y;}}*/
 
 int CharacterDisplayer::update(Displayable* entity)
 {
