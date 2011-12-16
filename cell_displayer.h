@@ -15,6 +15,6 @@ class CellElemDisplayer:public Displayer{
         NodePath mDrawing;
 };
 
-void initCellElemDisplayers(Grid& grid, WindowFramework *window, ModelManager *model_manager);
+void initCellElemDisplayers(Grid& grid, WindowFramework *window, ModelManager* model_manager);
 
 #endif

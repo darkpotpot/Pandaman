@@ -7,12 +7,12 @@
 
 class GridDisplayer{
     public:
-        GridDisplayer(WindowFramework* window);
-        void display_grid(Grid& grid);
+        GridDisplayer(NodePath* parentNode);
+        void display_grid(Grid* grid);
 
     private:
         GeoMipTerrain* mTerrain;
-        WindowFramework *mWindow;
+        NodePath* mParentNode;
 };
 
 

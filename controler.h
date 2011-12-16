@@ -10,12 +10,12 @@ class Controler
 {
 public:
     Controler(PandaFramework &framework);
-    Controler(PandaFramework &framework, MainCharacter* character);
     ~Controler();
     void moveLeft(const Event * theEvent, void * data);
     void apply_command(Command command);
     void cancel_command(Command command);
     void update();
+    void setMainCharacter(MainCharacter* mainCharacter);
 private:
     void set_command_state(Command command, bool state);
     bool get_command_state(Command command);

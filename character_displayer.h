@@ -17,11 +17,11 @@
 class CharacterDisplayer : public Displayer
 {
 public:
-    CharacterDisplayer(string model_name, WindowFramework *window, ModelManager *model_manager);
+    CharacterDisplayer(string model_name, NodePath *parentNode, ModelManager *model_manager);
     virtual int update(Displayable* entity);
 private:
     NodePath m_drawing;
-    WindowFramework *m_window;
+    NodePath *mParentNode;
     string m_model_name;
     AnimControlCollection m_anim_collection;
     PT(CMetaInterval) m_PosPace;

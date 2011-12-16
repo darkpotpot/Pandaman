@@ -36,9 +36,6 @@ void launchCommand(const Event * theEvent, void * data)
 Controler::Controler(PandaFramework &framework):m_character(NULL)
 { initCommands(framework); }
 
-Controler::Controler(PandaFramework &framework, MainCharacter* character):m_character(character)
-{ initCommands(framework); }
-
 void Controler::initCommands(PandaFramework &framework)
 {
     m_command_list.push_back(new CommandLauncher("arrow_left","left", this, MOVE_LEFT));
@@ -77,6 +74,9 @@ bool Controler::get_command_state(Command command)
 }
 void Controler::update()
 {
+    if (m_character == NULL){
+        return;
+    }
     if (!m_character->command_list_empty())
         {return; }
     else
@@ -108,7 +108,7 @@ void Controler::apply_command(Command command)
     if (m_character!=NULL)
         { m_character->set_command(command); }
     else
-        { error_message("NULL MainCharacter in controler."); }
+        {return;}
 }
 
 void Controler::cancel_command(Command command)
@@ -121,4 +121,8 @@ void Controler::cancel_command(Command command)
         //}
     //else
         //{ error_message("NULL MainCharacter in controler."); }
+}
+
+void Controler::setMainCharacter(MainCharacter* mainCharacter){
+    m_character = mainCharacter;
 }
