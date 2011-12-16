@@ -5,7 +5,6 @@
 #include <iostream>
 using namespace std;
 
-Grid::Grid() {}
 
 bool Grid::is_accessible(int x, int y)
 {return mCells[x][y]->is_accessible();}
@@ -37,6 +36,7 @@ bool Grid::loadMap(const char* pMapname){
             tileElem = tileElem->NextSiblingElement();
         }
     }
+    return true;
 }
 
 vector<CellElem*> Grid::getCellElems(int x, int y){

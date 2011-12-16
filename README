@@ -1,1 +1,22 @@
 For level creation: Tiled Map Editor
+
+Windows users
+
+Works with  Visual studio 2008
+
+Install Panda 3D (tested with a daily build Panda 3d 1.8.0) and modify the Config.prc file to use directx8 display.
+
+You need to add directories corresponding to your installed Panda3D version. If you installed to C:\Panda3D-1.8.0, for example, then you would add the following directories by using the Tools -> Options... pull-down menu and then selecting Projects and Solutions and in that selecting VC++ Directories and continuing on to enter the following:
+
+Executable Files 
+        C:\Panda3D-1.8.0\bin
+
+Include Files  
+        C:\Panda3D-1.8.0\python\include
+        C:\Panda3D-1.8.0\include
+
+Library Files 
+        C:\Panda3D-1.8.0\python\libs
+        C:\Panda3D-1.8.0\lib
+
+Works only in release.

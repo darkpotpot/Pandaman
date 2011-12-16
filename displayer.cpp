@@ -7,5 +7,5 @@ Displayer::Displayer()
 
 int Displayer::update(Displayable* entity)
 {
-    
+    return 0;
 }
