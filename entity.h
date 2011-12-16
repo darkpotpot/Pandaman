@@ -10,7 +10,7 @@ public:
     Entity(Grid *grid);
     Entity(int x, int y, Grid *grid);
     virtual void update();
-    virtual void move_to_ifp(int x, int y);
+    virtual bool move_to_ifp(int x, int y);
     virtual int get_x();
     virtual int get_y();
     //move to...

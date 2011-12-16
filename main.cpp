@@ -14,6 +14,7 @@
 #include "character_displayer.h"
 #include "cell_displayer.h"
 #include "world_camera.h"
+#include "monster.h"
 
 
 AsyncTask::DoneStatus update_lerp(GenericAsyncTask* task, void* data) {
@@ -43,6 +44,9 @@ int main(int argc, char *argv[]) {
     Controler controler = Controler(framework, &c);
     SimulationTask simu_task = SimulationTask(ClockObject::get_global_clock(), &controler);
     simu_task.addEntity(&c);
+    
+    Monster m = Monster(5,5,&grid);
+    simu_task.addEntity(m);
 
     PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();
 

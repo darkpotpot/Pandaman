@@ -20,7 +20,8 @@ Program(['main.cpp',
 		 'displayer.cpp', 
 		 'character_displayer.cpp', 
 		 'displayable.cpp',
-		 'global.cpp'
+		 'global.cpp',
+		 'monster.cpp'
          ],
 	CCFLAGS=['-fPIC', '-O2'],
 	CPPPATH=[pyInc, pandaInc],

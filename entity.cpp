@@ -14,14 +14,18 @@ Entity::Entity(int x, int y, Grid *grid):Displayable(), m_x(x), m_y(y), m_grid(g
 Entity::Entity(Grid *grid):Displayable(), m_x(0), m_y(0), m_grid(grid)
 {}
 
-void Entity::move_to_ifp(int x, int y)
+bool Entity::move_to_ifp(int x, int y)
 {
     if (m_grid->is_accessible(x, y))
          {
             m_x = x;
             m_y = y;
+            return true;
          }
-         
+    else
+        {
+        return false;
+        }
 }
 
 void Entity::update()
