@@ -23,4 +23,5 @@ bool LevelManager::loadLevel(const char* pMapname){
     //
 
     mDisplayer.displayLevel(mLevel);
+	return true;
 }

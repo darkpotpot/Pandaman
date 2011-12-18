@@ -201,6 +201,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\entity_displayer.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\global.cpp"
 				>
 			</File>
@@ -213,11 +217,35 @@
 				>
 			</File>
 			<File
+				RelativePath=".\heightfield_displayer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\level.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\level_displayer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\level_manager.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\main.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\model_manager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\monster.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\monster_displayer.cpp"
 				>
 			</File>
 			<File
@@ -291,6 +319,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\entity_displayer.h"
+				>
+			</File>
+			<File
 				RelativePath=".\global.h"
 				>
 			</File>
@@ -303,7 +335,31 @@
 				>
 			</File>
 			<File
+				RelativePath=".\heightfield_displayer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\level.h"
+				>
+			</File>
+			<File
+				RelativePath=".\level_displayer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\level_manager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\model_manager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\monster.h"
+				>
+			</File>
+			<File
+				RelativePath=".\monster_displayer.h"
 				>
 			</File>
 			<File
