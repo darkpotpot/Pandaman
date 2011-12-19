@@ -16,6 +16,7 @@ public:
     void cancel_command(Command command);
     void update();
     void setMainCharacter(MainCharacter* mainCharacter);
+    void removeMainCharacter();
 private:
     void set_command_state(Command command, bool state);
     bool get_command_state(Command command);

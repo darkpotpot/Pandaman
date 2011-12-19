@@ -10,7 +10,6 @@ LevelDisplayer::LevelDisplayer(WindowFramework* window, PandaFramework* framewor
 
 
 void LevelDisplayer::displayLevel(Level& level){
-    level.set_root_node(new NodePath("level"));
     level.get_grid()->set_displayer(new HeightfieldDisplayer(level.get_grid(), level.get_root_node()));
     level.get_character()->set_displayer(new CharacterDisplayer("panda-model", level.get_root_node(), &mModelManager));
     //
@@ -21,9 +20,11 @@ void LevelDisplayer::displayLevel(Level& level){
             (*it)->set_displayer(new EntityDisplayer("smiley", level.get_root_node(), &mModelManager, 5, LPoint3f(2,2,2)));
         }
     //.
-    initCellElemDisplayers(*level.get_grid(), mWindow, &mModelManager);
+    initCellElemDisplayers(*level.get_grid(), level.get_root_node(), &mModelManager);
     mCamera.seeAll(*level.get_grid());
-    //
-    //
     level.get_root_node()->reparent_to(mWindow->get_render());
+}
+
+void LevelDisplayer::undisplayLevel(Level& level){
+    level.get_root_node()->remove_node();
 }

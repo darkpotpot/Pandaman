@@ -10,11 +10,11 @@
 
 class CellElemDisplayer:public Displayer{
     public:
-        CellElemDisplayer(int x, int y, string model_name, WindowFramework* window, ModelManager* model_manager);
+        CellElemDisplayer(int x, int y, string model_name, NodePath* parentNode, ModelManager* model_manager);
     private:
         NodePath mDrawing;
 };
 
-void initCellElemDisplayers(Grid& grid, WindowFramework *window, ModelManager* model_manager);
+void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* model_manager);
 
 #endif
