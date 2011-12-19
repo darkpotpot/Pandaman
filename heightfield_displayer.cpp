@@ -16,7 +16,7 @@ HeightfieldDisplayer::HeightfieldDisplayer(Grid* grid, NodePath* parentNode):mTe
     scale_at_size(grid->mWidth * CASE_RATIO, grid->mHeight * CASE_RATIO, &terrainRoot);
     PT(TextureStage) groundTextureStage = new TextureStage("ts");
     PT(Texture) groundTexture = TexturePool::load_texture("resources/map/map_grass.jpg");
-    terrainRoot.set_tex_scale(groundTextureStage->get_default(), CASE_RATIO, CASE_RATIO);
+    terrainRoot.set_tex_scale(groundTextureStage->get_default(), grid->mWidth, grid->mHeight);
     terrainRoot.set_texture(groundTexture, 1); 
     terrainRoot.reparent_to(*mParentNode);
 }

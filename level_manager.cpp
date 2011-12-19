@@ -2,6 +2,7 @@
 #include "asyncTaskManager.h"
 #include "monster.h"
 
+
 int NB_LEVELS = 2;
 
 
@@ -24,14 +25,9 @@ void LevelManager::loadLevel(const char* pMapname){
     mControler.setMainCharacter(mLevel->get_character());
     mSimulationTask = new SimulationTask(ClockObject::get_global_clock(), &mControler);
     mSimulationTask->addEntity(mLevel->get_character());
-
-    Monster *monster = new Monster(1,2,mLevel->get_grid());
-    mLevel->add_monster(monster);
-    mSimulationTask->addEntity(&(*monster));
-    //
-    monster = new Monster(2,2,mLevel->get_grid());
-    mLevel->add_monster(monster);
-    mSimulationTask->addEntity(&(*monster));
+    for (std::list<Monster*>::iterator it = mLevel->get_monster_iterator(); it != mLevel->get_monster_list_end(); it++){
+        mSimulationTask->addEntity(*it);
+    }
 
     taskMgr->add(mSimulationTask);
     //

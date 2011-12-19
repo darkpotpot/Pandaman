@@ -1,4 +1,5 @@
 #include "level.h"
+#include "monster.h"
 
 Level::Level(const char* pMapname)
 {
@@ -6,6 +7,9 @@ Level::Level(const char* pMapname)
     m_grid.loadMap(pMapname);
     m_character = MainCharacter(1, 1, &m_grid);
     m_root_node = NodePath(pMapname);
+
+    add_monster(new Monster(1,2,&m_grid));
+    add_monster(new Monster(2,2,&m_grid));
 }
 
 Grid* Level::get_grid()
