@@ -55,7 +55,7 @@ int CharacterDisplayer::update(Displayable* entity)
         {
           m_anim_collection.loop_all(false); 
         }
-    update_pos(LPoint3f(x, y, 0));    
+    update_pos(LPoint3f(x, y, m_altitude));    
     return 0;
 }
 

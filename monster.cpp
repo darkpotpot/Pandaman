@@ -21,27 +21,28 @@ void Monster::update()
     int val;
     int dir;
     srand(time(NULL));
-    if (rand()>0.5)
+    if (rand()%100>50)
         { dir = 1; }
     else
         {dir = -1;}
-    if (rand()>0.5)
-        {x = dir;}
+    if (rand()%100>50)
+        {x = x+dir;}
     else
-        {y=dir;}
+        {y=y+dir;}
     while (!m_grid->is_accessible(x,y))
         {
         x = m_x;
         y = m_y;
-        if (rand()>0.5)
+        if (rand()%100>50)
             { dir = 1; }
         else
             {dir = -1;}
-        if (rand()>0.5)
+        if (rand()%100>50)
             {x = x+dir;}
         else
             {y=y+dir;}
         }
     Entity::move_to_ifp(x, y );
+    
     Entity::update();
 }

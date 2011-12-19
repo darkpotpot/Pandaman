@@ -26,3 +26,20 @@ void Level::set_simulation(SimulationTask* simu)
 
 SimulationTask* Level::get_simulation()
 {return m_simu;}
+
+void Level::add_monster(Monster* m)
+{
+m_monster.push_back(m);
+}
+
+std::list<Monster*>::iterator Level::get_monster_iterator()
+{
+    std::list<Monster*>::iterator it = m_monster.begin();
+    return it;
+}
+
+std::list<Monster*>::iterator Level::get_monster_list_end()
+{
+    std::list<Monster*>::iterator it = m_monster.end();
+    return it;
+}

@@ -24,10 +24,16 @@ public:
     /*--*/
     void set_simulation(SimulationTask* simu);
     SimulationTask* get_simulation();
+    /*--*/
+    void add_monster(Monster* m);
+    std::list<Monster*>::iterator get_monster_iterator();
+    std::list<Monster*>::iterator get_monster_list_end();
+    
     
 private:
     Grid *m_grid;
     MainCharacter *m_character;
+    std::list<Monster*> m_monster;
     NodePath *m_root_node;
     SimulationTask *m_simu;
 };

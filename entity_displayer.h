@@ -16,8 +16,12 @@ class EntityDisplayer : public Displayer
 {
 public:
     EntityDisplayer(string model_name, NodePath *parentNode, ModelManager *model_manager);
+    EntityDisplayer(string model_name, NodePath *parentNode, ModelManager *model_manager, float altitude, LPoint3f scale);
+
     virtual int update(Displayable* entity);
 protected:
+    static int idx;
+    float m_altitude;
     void update_pos(LPoint3f new_pos);
     NodePath m_drawing;
 private:

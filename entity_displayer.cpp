@@ -9,17 +9,46 @@
 #include "global.h"
 #include <string>
 #include <cmath>
+#include <stdlib.h>
+
+#include <sstream>  
+
+template<typename T>
+std::string to_string( const T & Value )
+{
+    // utiliser un flux de sortie pour créer la chaîne
+    std::ostringstream oss;
+    // écrire la valeur dans le flux
+    oss << Value;
+    // renvoyer une string
+    return oss.str();
+}
+
+
 
 extern int CASE_RATIO;
 extern double UPDATE_TIME;
 
+int EntityDisplayer::idx=0;
+
 EntityDisplayer::EntityDisplayer(string model_name, NodePath *parentNode, ModelManager* model_manager)
-:m_model_name(model_name),mParentNode(parentNode), m_PosPace(NULL)
+:m_model_name(model_name),mParentNode(parentNode), m_PosPace(NULL), m_altitude(0.)
 {
+    EntityDisplayer::idx = EntityDisplayer::idx+1;
     m_drawing = model_manager->loadModel(model_name);
     m_drawing.reparent_to(*mParentNode);
     m_drawing.set_scale(0.008, 0.008, 0.008);
-    m_PosPace = new CMetaInterval("pandaPace");
+    m_PosPace = new CMetaInterval(string("pandaPace")+to_string(EntityDisplayer::idx));
+}
+
+EntityDisplayer::EntityDisplayer(string model_name, NodePath *parentNode, ModelManager* model_manager, float altitude, LPoint3f scale)
+:m_model_name(model_name),mParentNode(parentNode), m_PosPace(NULL), m_altitude(altitude)
+{
+    EntityDisplayer::idx = EntityDisplayer::idx+1;
+    m_drawing = model_manager->loadModel(model_name);
+    m_drawing.reparent_to(*mParentNode);
+    m_drawing.set_scale(scale);
+    m_PosPace = new CMetaInterval("pandaPace"+to_string(EntityDisplayer::idx));
 }
 
 
@@ -33,7 +62,7 @@ int EntityDisplayer::update(Displayable* entity)
         {
             return 0;
         }
-    update_pos(LPoint3f(x, y, 0));    
+    update_pos(LPoint3f(x, y, m_altitude));    
     return 0;
 }
 
@@ -73,7 +102,7 @@ void EntityDisplayer::add_pos_lerp(LPoint3f start_pos, LPoint3f end_pos, double 
 {
     PT(CLerpNodePathInterval) posInterval =new CLerpNodePathInterval("pandaPosInterval1",
                                              lenght, CLerpInterval::BT_no_blend,//CLerpInterval::BT_ease_in_out,
-                                             true, false, m_drawing, NodePath());
+                                             true, false, m_drawing, NULL);
     posInterval->set_start_pos(start_pos);
     posInterval->set_end_pos(end_pos);
     m_PosPace->add_c_interval(posInterval, 0, CMetaInterval::RS_previous_end);
@@ -83,7 +112,7 @@ void EntityDisplayer::add_hpr_lerp(LPoint3f start_hpr, LPoint3f end_hpr, double 
 {
     PT(CLerpNodePathInterval) hprInterval =new CLerpNodePathInterval("pandaPosInterval1",
                                              lenght, CLerpInterval::BT_no_blend,//CLerpInterval::BT_ease_in_out,
-                                             true, false, m_drawing, NodePath());            
+                                             true, false, m_drawing, NULL);            
     hprInterval->set_start_hpr(start_hpr);
     hprInterval->set_end_hpr(end_hpr);
     m_PosPace->add_c_interval(hprInterval, 0, CMetaInterval::RS_previous_end);
