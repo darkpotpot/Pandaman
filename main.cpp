@@ -4,6 +4,9 @@
 #include "genericAsyncTask.h"
 #include "asyncTaskManager.h"
 #include "cIntervalManager.h"
+#include <stdlib.h>
+#include <time.h>
+
 
 
 #include "level_manager.h"
@@ -17,6 +20,7 @@ AsyncTask::DoneStatus update_lerp(GenericAsyncTask* task, void* data) {
 
 
 int main(int argc, char *argv[]) {
+    srand(time(NULL));
     PandaFramework framework;
     framework.open_framework(argc, argv);
     framework.set_window_title("My Panda3D Window");

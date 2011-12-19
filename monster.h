@@ -1,7 +1,7 @@
 #ifndef Monster_H
 #define Monster_H
 #include "entity.h"
-
+#include "ia.h"
 
 class Monster:public Entity{
 public:
@@ -11,7 +11,7 @@ public:
     virtual void update();
     
 private:
-    ;
+    DirectionnalIA m_ia;
 };
 
 #endif
