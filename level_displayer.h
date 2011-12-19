@@ -12,6 +12,7 @@ class LevelDisplayer{
     public:
         LevelDisplayer(WindowFramework* window, PandaFramework* framework);
         void displayLevel(Level& level);
+        void undisplayLevel(Level& level);
     private:
         WindowFramework* mWindow;
         PandaFramework* mFramework;

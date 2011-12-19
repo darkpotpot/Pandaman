@@ -126,3 +126,7 @@ void Controler::cancel_command(Command command)
 void Controler::setMainCharacter(MainCharacter* mainCharacter){
     m_character = mainCharacter;
 }
+
+void Controler::removeMainCharacter(){
+    m_character = NULL;
+}

@@ -7,7 +7,6 @@
 
 
 #include "level_manager.h"
-//#include "level_displayer.h"
 
 
 AsyncTask::DoneStatus update_lerp(GenericAsyncTask* task, void* data) {
@@ -15,6 +14,15 @@ AsyncTask::DoneStatus update_lerp(GenericAsyncTask* task, void* data) {
     return AsyncTask::DS_cont;
     }
 
+void nextLevel(const Event * theEvent, void * data){
+    LevelManager* levelManager = (LevelManager*)data;
+    levelManager->nextLevel();
+}
+
+void previousLevel(const Event * theEvent, void * data){
+    LevelManager* levelManager = (LevelManager*)data;
+    levelManager->previousLevel();
+}
 
 int main(int argc, char *argv[]) {
     PandaFramework framework;
@@ -24,9 +32,10 @@ int main(int argc, char *argv[]) {
     window->enable_keyboard();
 
 
-    LevelManager level_manager = LevelManager(window, &framework);//new LevelDisplayer(window, &framework), new Controler(framework));
-    level_manager.loadLevel("resources/map/level01.tmx");
-
+    LevelManager level_manager = LevelManager(window, &framework);
+    level_manager.nextLevel();
+    framework.define_key("+", "LevelUp", nextLevel, (void *)&level_manager); 
+    framework.define_key("-", "LevelDown", previousLevel, (void *)&level_manager); 
 
     PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();
     taskMgr->add(new GenericAsyncTask("Update lerp", &update_lerp, (void*) CIntervalManager::get_global_ptr()));

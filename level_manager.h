@@ -7,17 +7,22 @@
 #include "level.h"
 #include "controler.h"
 #include "level_displayer.h"
+#include "simu.h"
 
 
 class LevelManager{
     public:
-        //LevelManager(LevelDisplayer displayer, Controler* controler);
         LevelManager(WindowFramework *window, PandaFramework* framework);
-        bool loadLevel(const char* pMapname);
+        void loadLevel(const char* pMapname);
+        void nextLevel();
+        void previousLevel();
     private:
-        Level mLevel;
+        Level* mLevel;
         LevelDisplayer mDisplayer;
         Controler mControler;
+        PT(SimulationTask) mSimulationTask;
+        int mCurrentLevel;
+        void loadCurrentLevel();
 };
 
 #endif
