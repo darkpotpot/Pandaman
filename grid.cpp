@@ -47,3 +47,9 @@ void Grid::addElem(int x, int y, CellElem *elem)
 {
     mCells[x][y]->addElem(elem);
 }
+
+void Grid::move(int x_from, int y_from, int x_to, int y_to, CellElem *elem)
+{
+    mCells[x_from][y_from]->removeElem(elem);
+    mCells[x_to][y_to]->addElem(elem);
+}

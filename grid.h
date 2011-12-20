@@ -17,6 +17,7 @@ class Grid:public Displayable
         int mHeight;
         list<CellElem*> getCellElems(int x, int y);
         void addElem(int x, int y, CellElem *elem);
+        void move(int x_from, int y_from, int x_to, int y_to, CellElem *elem);
     private:
         vector<vector<Cell*> > mCells;
 };

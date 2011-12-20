@@ -18,6 +18,7 @@ bool Entity::move_to_ifp(int x, int y)
 {
     if (m_grid->is_accessible(x, y))
          {
+            m_grid->move(m_x, m_y, x, y, this);
             m_x = x;
             m_y = y;
             return true;
