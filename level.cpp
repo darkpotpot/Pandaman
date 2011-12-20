@@ -18,6 +18,10 @@ Level::Level(const char* pMapname):m_character(NULL), m_root_node(NodePath(pMapn
     assert ((m_character != NULL));
 }
 
+Level::~Level(){
+    delete m_grid;
+}
+
 void Level::loadMap(TiXmlHandle layerHandle){
     TiXmlElement* worldElem = layerHandle.FirstChild("data").FirstChild("tile").ToElement() ;
     assert(worldElem);

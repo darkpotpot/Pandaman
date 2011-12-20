@@ -10,6 +10,13 @@ bool Wall::blocks(){
 
 Cell::Cell() {}
 
+Cell::~Cell(){
+    list<CellElem*>::iterator it;
+    for ( it=mElem.begin() ; it != mElem.end(); it++ ){
+        delete (*it);
+    }
+    mElem.clear();
+}
 
 void Cell::addElem(CellElem* elem){
     mElem.push_back(elem);
