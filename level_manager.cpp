@@ -26,11 +26,11 @@ void LevelManager::loadLevel(const char* pMapname){
     mSimulationTask->addEntity(mLevel->get_character());
 
     Monster *monster = new Monster(1,2,mLevel->get_grid());
-    mLevel->add_monster(monster);
+    mLevel->addEntity(monster);
     mSimulationTask->addEntity(&(*monster));
     //
     monster = new Monster(2,2,mLevel->get_grid());
-    mLevel->add_monster(monster);
+    mLevel->addEntity(monster);
     mSimulationTask->addEntity(&(*monster));
 
     taskMgr->add(mSimulationTask);

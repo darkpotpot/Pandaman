@@ -5,13 +5,13 @@
 
 using namespace std;
 
-Entity::Entity():Displayable(), m_x(0), m_y(0), m_grid(NULL)
+Entity::Entity():CellElem(), m_x(0), m_y(0), m_grid(NULL)
 {}
 
-Entity::Entity(int x, int y, Grid *grid):Displayable(), m_x(x), m_y(y), m_grid(grid)
+Entity::Entity(int x, int y, Grid *grid):CellElem(), m_x(x), m_y(y), m_grid(grid)
 {}
 
-Entity::Entity(Grid *grid):Displayable(), m_x(0), m_y(0), m_grid(grid)
+Entity::Entity(Grid *grid):CellElem(), m_x(0), m_y(0), m_grid(grid)
 {}
 
 bool Entity::move_to_ifp(int x, int y)

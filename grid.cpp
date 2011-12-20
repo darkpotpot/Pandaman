@@ -39,6 +39,11 @@ bool Grid::loadMap(const char* pMapname){
     return true;
 }
 
-vector<CellElem*> Grid::getCellElems(int x, int y){
+list<CellElem*> Grid::getCellElems(int x, int y){
     return mCells[x][y]->getCellElems();
+}
+
+void Grid::addElem(int x, int y, CellElem *elem)
+{
+    mCells[x][y]->addElem(elem);
 }

@@ -15,7 +15,8 @@ class Grid:public Displayable
         bool loadMap(const char* pMapname);
         int mWidth;
         int mHeight;
-        vector<CellElem*> getCellElems(int x, int y);
+        list<CellElem*> getCellElems(int x, int y);
+        void addElem(int x, int y, CellElem *elem);
     private:
         vector<vector<Cell*> > mCells;
 };

@@ -9,6 +9,7 @@ public:
     MainCharacter();
     MainCharacter(Grid *grid);
     MainCharacter(int x, int y, Grid *grid);
+    virtual const CellElemType getType(){return CHARACTER;};
     virtual void update();
     int set_command(Command command);
     bool command_list_empty();

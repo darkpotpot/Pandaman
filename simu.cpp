@@ -13,6 +13,7 @@ SimulationTask::SimulationTask(ClockObject *global_clock, Controler *controler):
 
 void SimulationTask::addEntity(Entity* entity)
 {m_entity_list.push_back(entity);
+
 }
 
 double SimulationTask::get_time()

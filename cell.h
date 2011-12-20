@@ -2,9 +2,9 @@
 #define Cell_H
 
 #include "displayable.h"
-#include <vector>
-using std::vector;
-enum CellElemType {EMPTY, WALL};
+#include <list>
+using std::list;
+enum CellElemType {EMPTY, WALL, ENTITY, CHARACTER, MONSTER};
 
 class CellElem:public Displayable{
     public:
@@ -24,9 +24,10 @@ class Cell{
         Cell();
         bool is_accessible();
         void addElem(CellElem* elem);
-        vector<CellElem*> getCellElems();
+        void removeElem(CellElem* elem);
+        list<CellElem*> getCellElems();
     private:
-        vector<CellElem*> mElem;
+        list<CellElem*> mElem;
 };
 
 #endif
