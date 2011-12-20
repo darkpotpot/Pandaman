@@ -12,6 +12,7 @@ class Level{
 
 public:
     Level(const char* pMapname);
+    ~Level();
     Grid* get_grid();
     MainCharacter* get_character();
     NodePath* get_root_node();

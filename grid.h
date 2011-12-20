@@ -13,6 +13,7 @@ class Grid:public Displayable
 {
     public:
         Grid(int sizeX, int sizeY);
+        ~Grid();
         bool is_accessible(int x, int y);
         list<CellElem*> getCellElems(int x, int y);
         void addElem(int x, int y, CellElem *elem);

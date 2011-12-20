@@ -21,19 +21,13 @@ Grid::Grid(int width, int height):mWidth(width), mHeight(height){
     }
 }
 
-//Grid::~Grid(){
-    //for (int i=0; i<mWidth; i++){
-        //for (int j=0; j<mHeight; j++){
-            //vector<CellElem*> elems = getCellElems(i, j);
-            //vector<CellElem*>::iterator it;
-            //for ( it=elems.begin() ; it < elems.end(); it++ ){
-                //delete (*it);
-            //}
-            //delete mCells[i][j];
-        //}
-    //}
-
-//}
+Grid::~Grid(){
+    for (int i=0; i<mWidth; i++){
+        for (int j=0; j<mHeight; j++){
+            delete mCells[i][j];
+        }
+    }
+}
 
 bool Grid::is_accessible(int x, int y)
 {return mCells[x][y]->is_accessible();}

@@ -22,6 +22,7 @@ class Wall:public CellElem{
 class Cell{
     public:
         Cell();
+        ~Cell();
         bool is_accessible();
         void addElem(CellElem* elem);
         void removeElem(CellElem* elem);
