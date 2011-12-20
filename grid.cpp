@@ -1,43 +1,39 @@
 #include "grid.h"
 #include "assert.h"
-#include "tinyxml/tinyxml.h"
 #include "cell.h"
 #include <iostream>
 using namespace std;
 
-
-bool Grid::is_accessible(int x, int y)
-{return mCells[x][y]->is_accessible();}
-
-bool Grid::loadMap(const char* pMapname){
-    TiXmlDocument doc(pMapname);
-    bool loadOkay = doc.LoadFile();
-    assert (loadOkay);
-    TiXmlHandle docHandle(&doc);
-    TiXmlElement* elem = docHandle.FirstChild("map").ToElement();
-    elem->QueryIntAttribute("width", &mWidth);
-    elem->QueryIntAttribute("height", &mHeight);
-    //
+Grid::Grid(int width, int height):mWidth(width), mHeight(height){
     mCells.clear();
     mCells.resize(mHeight);
     for (int i = 0; i < mHeight; ++i){
         mCells[i].resize(mWidth);
     }
-    TiXmlElement* tileElem =docHandle.FirstChild("map").FirstChild("layer").FirstChild("data").FirstChild("tile").ToElement() ;
-    assert (elem);
-    for (int i=mHeight - 1; i > -1; i--){ //panda is not sorted in the same order than the map
-        for (int j=0; j < mWidth; j++){
-            mCells[j][i] = new Cell();
-            switch (atoi(tileElem->Attribute("gid"))){
-                case 1:
-                    mCells[j][i]->addElem(new Wall());
-                    break;
-            }
-            tileElem = tileElem->NextSiblingElement();
+    for (int i=0; i < width; i++){
+        for (int j=0; j<height; j++){
+            mCells[i][j] = new Cell();
         }
     }
-    return true;
 }
+
+//Grid::~Grid(){
+    //for (int i=0; i<mWidth; i++){
+        //for (int j=0; j<mHeight; j++){
+            //vector<CellElem*> elems = getCellElems(i, j);
+            //vector<CellElem*>::iterator it;
+            //for ( it=elems.begin() ; it < elems.end(); it++ ){
+                //delete (*it);
+            //}
+            //delete mCells[i][j];
+        //}
+    //}
+
+//}
+
+bool Grid::is_accessible(int x, int y)
+{return mCells[x][y]->is_accessible();}
+
 
 list<CellElem*> Grid::getCellElems(int x, int y){
     return mCells[x][y]->getCellElems();
@@ -46,4 +42,12 @@ list<CellElem*> Grid::getCellElems(int x, int y){
 void Grid::addElem(int x, int y, CellElem *elem)
 {
     mCells[x][y]->addElem(elem);
+}
+
+int Grid::getWidth(){
+    return mWidth;
+}
+
+int Grid::getHeight(){
+    return mHeight;
 }

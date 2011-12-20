@@ -5,6 +5,7 @@
 #include "character.h"
 #include "monster.h"
 #include "nodePath.h"
+#include "tinyxml/tinyxml.h"
 
 
 class Level{
@@ -21,10 +22,11 @@ public:
 
 
 private:
-    Grid m_grid;
+    Grid* m_grid;
     std::list<Monster*> m_monster;
-    MainCharacter m_character;
+    MainCharacter* m_character;
     NodePath m_root_node; //not very clean, the object knows it's a NodePath, todo:inherits from displayable and do the same but a bit of pain in the ass for a small test project.
+    void loadMap(TiXmlHandle layerHandle);
 };
 
 #endif

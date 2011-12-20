@@ -13,10 +13,10 @@ HeightfieldDisplayer::HeightfieldDisplayer(Grid* grid, NodePath* parentNode):mTe
     mTerrain.set_bruteforce(true);
     mTerrain.generate();
     NodePath terrainRoot = mTerrain.get_root();
-    scale_at_size(grid->mWidth * CASE_RATIO, grid->mHeight * CASE_RATIO, &terrainRoot);
+    scale_at_size(grid->getWidth() * CASE_RATIO, grid->getHeight() * CASE_RATIO, &terrainRoot);
     PT(TextureStage) groundTextureStage = new TextureStage("ts");
     PT(Texture) groundTexture = TexturePool::load_texture("resources/map/map_grass.jpg");
-    terrainRoot.set_tex_scale(groundTextureStage->get_default(), grid->mWidth, grid->mHeight);
+    terrainRoot.set_tex_scale(groundTextureStage->get_default(), grid->getWidth(), grid->getHeight());
     terrainRoot.set_texture(groundTexture, 1); 
     terrainRoot.reparent_to(*mParentNode);
 }

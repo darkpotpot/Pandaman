@@ -11,6 +11,7 @@ public:
     virtual int get_x();
     virtual int get_y();
     void set_displayer(Displayer * displayer);
+    Displayer* getDisplayer();
 protected:
     Displayer * m_displayer;
 };

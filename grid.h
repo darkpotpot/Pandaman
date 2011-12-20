@@ -11,14 +11,16 @@ using std::vector;
 class Grid:public Displayable
 {
     public:
+        Grid(int sizeX, int sizeY);
         bool is_accessible(int x, int y);
-        bool loadMap(const char* pMapname);
-        int mWidth;
-        int mHeight;
         list<CellElem*> getCellElems(int x, int y);
         void addElem(int x, int y, CellElem *elem);
+        int getWidth();
+        int getHeight();
     private:
         vector<vector<Cell*> > mCells;
+        int mWidth;
+        int mHeight;
 };
 
 #endif

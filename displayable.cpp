@@ -15,3 +15,6 @@ int Displayable::get_y(){
 void Displayable::set_displayer(Displayer * displayer)
 { m_displayer = displayer; }
 
+Displayer* Displayable::getDisplayer(){
+    return m_displayer;
+}

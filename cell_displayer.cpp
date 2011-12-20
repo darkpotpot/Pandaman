@@ -17,8 +17,8 @@ CellElemDisplayer::CellElemDisplayer(int x, int y, string model_name, NodePath *
 
 
 void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* model_manager){
-    for (int i=0; i < grid.mHeight; i++){
-        for (int j=0; j < grid.mWidth; j++){
+    for (int i=0; i < grid.getHeight(); i++){
+        for (int j=0; j < grid.getWidth(); j++){
             list<CellElem*> elems = grid.getCellElems(i, j);
             list<CellElem*>::iterator it;
             for ( it=elems.begin() ; it != elems.end(); it++ ){
@@ -37,3 +37,18 @@ void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* mode
         }
     }
 }
+
+
+void deleteCellElemDisplayers(Grid& grid){
+    for (int i=0; i < grid.getHeight(); i++){
+        for (int j=0; j < grid.getWidth(); j++){
+            list<CellElem*> elems = grid.getCellElems(i, j);
+            list<CellElem*>::iterator it;
+            for ( it=elems.begin() ; it != elems.end(); it++ ){
+                delete (*it)->getDisplayer();
+                (*it)->set_displayer(NULL);
+            }
+        }
+    }
+}
+

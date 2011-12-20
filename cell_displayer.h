@@ -16,5 +16,6 @@ class CellElemDisplayer:public Displayer{
 };
 
 void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* model_manager);
+void deleteCellElemDisplayers(Grid& grid);
 
 #endif

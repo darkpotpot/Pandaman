@@ -15,5 +15,20 @@ void LevelDisplayer::displayLevel(Level& level){
 }
 
 void LevelDisplayer::undisplayLevel(Level& level){
+    delete level.get_character()->getDisplayer();
+    level.get_character()->set_displayer(NULL);
+    //
+    delete level.get_grid()->getDisplayer();
+    level.get_grid()->set_displayer(NULL);
+    //
+    std::list<Monster*>::iterator it = level.get_monster_iterator();
+    std::list<Monster*>::iterator end = level.get_monster_list_end();
+    for (;it!=end;it++)
+        {
+            delete (*it)->getDisplayer();
+            (*it)->set_displayer(NULL);
+        }
+    //
+    deleteCellElemDisplayers(*level.get_grid());
     level.get_root_node()->remove_node();
 }

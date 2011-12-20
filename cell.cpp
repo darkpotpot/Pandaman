@@ -1,6 +1,5 @@
 #include "cell.h"
 
-
 bool CellElem::blocks(){
     return false;
 }
