@@ -50,6 +50,7 @@ int Grid::getWidth(){
 
 int Grid::getHeight(){
     return mHeight;
+}
 
 void Grid::move(int x_from, int y_from, int x_to, int y_to, CellElem *elem)
 {
