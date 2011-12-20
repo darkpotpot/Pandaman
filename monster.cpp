@@ -14,11 +14,11 @@ Monster::Monster(Grid *grid):Entity(grid)
 Monster::Monster(int x, int y, Grid *grid):Entity(x, y, grid)
 {}
 
-void Monster::update()
+void Monster::update(EventManager& event_manager)
 {
     int x;
     int y;
     m_ia.compute_movement(this, m_grid, x, y);
-    Entity::move_to_ifp(x, y );
-    Entity::update();
+    Entity::move_to_ifp(x, y, event_manager);
+    Entity::update(event_manager);
 }

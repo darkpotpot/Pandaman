@@ -22,7 +22,7 @@ MainCharacter::MainCharacter(Grid *grid):Entity(grid)
 MainCharacter::MainCharacter(int x, int y, Grid *grid):Entity(x, y, grid)
 {}
 
-void MainCharacter::update()
+void MainCharacter::update(EventManager& event_manager)
 {
     int x_dir = 0;
     int y_dir = 0;
@@ -65,9 +65,9 @@ void MainCharacter::update()
     {
         int new_x = m_x+x_dir;
         int new_y = m_y+y_dir;
-        Entity::move_to_ifp(new_x, new_y );
+        Entity::move_to_ifp(new_x, new_y, event_manager);
     }
-    Entity::update();
+    Entity::update(event_manager);
 
 }
 

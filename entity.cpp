@@ -14,11 +14,11 @@ Entity::Entity(int x, int y, Grid *grid):CellElem(), m_x(x), m_y(y), m_grid(grid
 Entity::Entity(Grid *grid):CellElem(), m_x(0), m_y(0), m_grid(grid)
 {}
 
-bool Entity::move_to_ifp(int x, int y)
+bool Entity::move_to_ifp(int x, int y, EventManager& event_manager)
 {
     if (m_grid->is_accessible(x, y))
          {
-            m_grid->move(m_x, m_y, x, y, this);
+            m_grid->move(m_x, m_y, x, y, this, event_manager);
             m_x = x;
             m_y = y;
             return true;
@@ -29,7 +29,7 @@ bool Entity::move_to_ifp(int x, int y)
         }
 }
 
-void Entity::update()
+void Entity::update(EventManager& event_manager)
 {   if (m_displayer!=NULL)
     {
    m_displayer->update(this);
