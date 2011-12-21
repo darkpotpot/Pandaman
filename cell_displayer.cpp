@@ -26,7 +26,7 @@ void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* mode
                     case WALL:
                         (*it)->set_displayer(new CellElemDisplayer(i, j, "resources/meshes/wall.egg", parentNode, model_manager));
                         break;
-                    case ENTITY:
+                    case MONSTER1:
                         (*it)->set_displayer(new EntityDisplayer("smiley", parentNode, model_manager, 5, LPoint3f(2,2,2)));
                         break;
                     case CHARACTER:

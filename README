@@ -22,11 +22,5 @@ Works only in release.
 
 Level creation: Tiled Map Editor
 
-* tilesets constraints:
-** gid 1 named wall
-** gid 2 named grass
-** gid 3 named panda
-
-*layers constraint
-** layer 1 named World contains grass and wall
-** layer 2 named Character contains panda
+* only one character
+* use the tilesets given

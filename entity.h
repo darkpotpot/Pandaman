@@ -10,7 +10,6 @@ public:
     Entity();
     Entity(Grid *grid);
     Entity(int x, int y, Grid *grid);
-    virtual const CellElemType getType(){return ENTITY;};
     virtual void update();
     virtual bool move_to_ifp(int x, int y);
     virtual int get_x();

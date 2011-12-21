@@ -6,6 +6,7 @@
 #include "monster.h"
 #include "nodePath.h"
 #include "tinyxml/tinyxml.h"
+#include "level_loader.h"
 
 
 class Level{
@@ -27,7 +28,7 @@ private:
     std::list<Monster*> m_monster;
     MainCharacter* m_character;
     NodePath m_root_node; //not very clean, the object knows it's a NodePath, todo:inherits from displayable and do the same but a bit of pain in the ass for a small test project.
-    void loadMap(TiXmlHandle layerHandle);
+    void fillMapCells(TiXmlElement* worldElem, LevelLoader& levelLoader);
 };
 
 #endif
