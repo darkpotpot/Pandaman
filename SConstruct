@@ -28,7 +28,9 @@ Program(['main.cpp',
 		 'entity_displayer.cpp',
 		 'monster.cpp',
 		 'level.cpp',
-		 'ia.cpp'
+		 'ia.cpp',
+		 'event.cpp',
+		 'event_manager.cpp'
          ],
 	CCFLAGS=['-fPIC', '-O2'],
 	CPPPATH=[pyInc, pandaInc],

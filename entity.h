@@ -3,6 +3,8 @@
 #include "grid.h"
 #include "cell.h"
 #include "displayable.h"
+#include "event_manager.h"
+
 
 class Entity : public CellElem
 {
@@ -10,8 +12,8 @@ public:
     Entity();
     Entity(Grid *grid);
     Entity(int x, int y, Grid *grid);
-    virtual void update();
-    virtual bool move_to_ifp(int x, int y);
+    virtual void update(EventManager& event_manager);
+    virtual bool move_to_ifp(int x, int y, EventManager& event_manager);
     virtual int get_x();
     virtual int get_y();
     //move to...

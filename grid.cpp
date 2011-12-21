@@ -1,6 +1,10 @@
 #include "grid.h"
 #include "assert.h"
 #include "cell.h"
+#include "event.h"
+
+class CollisionEvent;
+
 #include <iostream>
 using namespace std;
 
@@ -46,8 +50,19 @@ int Grid::getHeight(){
     return mHeight;
 }
 
-void Grid::move(int x_from, int y_from, int x_to, int y_to, CellElem *elem)
+void Grid::move(int x_from, int y_from, int x_to, int y_to, CellElem* elem, EventManager& event_manager)
 {
     mCells[x_from][y_from]->removeElem(elem);
+    list<CellElem*> cell_elem_list =  getCellElems(x_to, y_to);
+    if (!cell_elem_list.empty())
+    {
+        list<CellElem*>::iterator it;
+        for (it=cell_elem_list.begin();it!=cell_elem_list.end();it++)
+        {
+        event_manager.addEvent(new CollisionEvent(elem, (*it), this));
+        }
+            
+    }
+        
     mCells[x_to][y_to]->addElem(elem);
 }

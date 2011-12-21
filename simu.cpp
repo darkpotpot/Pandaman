@@ -1,7 +1,6 @@
 #include "simu.h"
 #include "clockObject.h"
-//#include "entity.h"
-//#include <list>
+#include "event.h"
 
 
 
@@ -35,7 +34,15 @@ AsyncTask::DoneStatus SimulationTask::do_task()
     std::list<Entity*>::iterator it;
     for (it=m_entity_list.begin(); it!=m_entity_list.end();it++)
         {
-        (*it)->update();
+        (*it)->update(m_event_manager);
         }
+    
+    //
+    SimulationEvent * event;
+    while (!m_event_manager.empty())
+    {
+        event = m_event_manager.popFirstEvent();
+        cout<<"Event"<<event->get_type()<<endl;
+    }
     return AsyncTask::DS_cont;
 }
