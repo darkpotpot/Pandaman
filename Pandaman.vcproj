@@ -205,6 +205,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\event.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\event_manager.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\global.cpp"
 				>
 			</File>
@@ -213,11 +221,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\grid_display.cpp"
+				RelativePath=".\heightfield_displayer.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\heightfield_displayer.cpp"
+				RelativePath=".\ia.cpp"
 				>
 			</File>
 			<File
@@ -226,6 +234,10 @@
 			</File>
 			<File
 				RelativePath=".\level_displayer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\level_loader.cpp"
 				>
 			</File>
 			<File
@@ -323,6 +335,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\event.h"
+				>
+			</File>
+			<File
+				RelativePath=".\event_manager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\global.h"
 				>
 			</File>
@@ -331,11 +351,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\grid_display.h"
+				RelativePath=".\heightfield_displayer.h"
 				>
 			</File>
 			<File
-				RelativePath=".\heightfield_displayer.h"
+				RelativePath=".\ia.h"
 				>
 			</File>
 			<File
@@ -344,6 +364,10 @@
 			</File>
 			<File
 				RelativePath=".\level_displayer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\level_loader.h"
 				>
 			</File>
 			<File
