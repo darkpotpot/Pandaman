@@ -51,6 +51,11 @@ EntityDisplayer::EntityDisplayer(string model_name, NodePath *parentNode, ModelM
     m_PosPace = new CMetaInterval("pandaPace"+to_string(EntityDisplayer::idx));
 }
 
+EntityDisplayer::~EntityDisplayer()
+{
+m_drawing.remove_node();
+
+}
 
 int EntityDisplayer::update(Displayable* entity)
 {

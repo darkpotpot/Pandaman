@@ -21,7 +21,7 @@ private:
     std::list<SimulationEvent*> m_event_list;
 };
 
-SimuState process_event(SimulationEvent* event);
+SimuState process_event(SimulationEvent* event, std::list<CellElem*>& to_delete_list);
 
 
 #endif

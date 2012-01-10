@@ -4,7 +4,7 @@
 #include "displayable.h"
 #include <list>
 using std::list;
-enum CellElemType {EMPTY, WALL, CHARACTER, MONSTER1};
+enum CellElemType {EMPTY, WALL, CHARACTER, MONSTER1, FOOD};
 
 class CellElem:public Displayable{
     public:

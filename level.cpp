@@ -30,6 +30,12 @@ void Level::fillMapCells(TiXmlElement* worldElem, LevelLoader& levelLoader){
                     break;
                 case MONSTER1:
                     add_monster(new Monster(j, i, m_grid));
+                    //HACK to test food until piou create some with tile editor
+                    //add_food(new Food(j, i), j, i);
+                    break;
+                case FOOD:
+                    add_food(new Food(j, i), j, i);
+                    //std::cout<<"food found!!"<<endl;
                     break;
             }
             worldElem = worldElem->NextSiblingElement();
@@ -53,6 +59,11 @@ void Level::addEntity(Entity* entity)
     m_grid->addElem(x,y,entity);
 }
 
+void Level::add_food(Food* food, int x, int y)
+{
+    m_grid->addElem(x,y,food);
+}
+
 std::list<Monster*>::iterator Level::get_monster_iterator()
 { return m_monster.begin(); }
 
@@ -66,3 +77,19 @@ void Level::add_monster(Monster* m)
     addEntity(m);
 }
 
+void Level::delete_food(Food* food)
+{
+    m_grid->removeElem(food->get_x(), food->get_y(), dynamic_cast<CellElem*>(food));
+    delete food->getDisplayer();
+    food->set_displayer(NULL);
+    delete food;
+}
+void Level::delete_monster(Monster* m)
+{
+    m_monster.remove(m);
+    m_grid->removeElem(m->get_x(), m->get_y(), dynamic_cast<CellElem*>(m));
+    delete m->getDisplayer();
+    m->set_displayer(NULL);
+    delete m;
+
+}

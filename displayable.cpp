@@ -5,6 +5,11 @@ Displayable::Displayable(): m_displayer(NULL)
 {
 }
 
+Displayable::~Displayable()
+{
+    delete m_displayer;
+}
+
 int Displayable::get_x()
 {
     return 0;

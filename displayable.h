@@ -8,6 +8,7 @@ class Displayable
 {
 public:
     Displayable();
+    virtual ~Displayable();
     virtual int get_x();
     virtual int get_y();
     void set_displayer(Displayer * displayer);

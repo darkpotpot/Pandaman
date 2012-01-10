@@ -42,6 +42,11 @@ void Grid::addElem(int x, int y, CellElem *elem)
     mCells[x][y]->addElem(elem);
 }
 
+void Grid::removeElem(int x, int y, CellElem *elem)
+{
+    mCells[x][y]->removeElem(elem);
+}
+
 int Grid::getWidth(){
     return mWidth;
 }

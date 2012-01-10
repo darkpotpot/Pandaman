@@ -12,9 +12,10 @@ SimulationTask::SimulationTask(ClockObject *global_clock, Controler *controler):
 {}
 
 void SimulationTask::addEntity(Entity* entity)
-{m_entity_list.push_back(entity);
+{m_entity_list.push_back(entity);}
 
-}
+void SimulationTask::removeEntity(Entity* entity)
+{m_entity_list.remove(entity);}
 
 double SimulationTask::get_time()
 {
@@ -24,7 +25,7 @@ double SimulationTask::get_time()
         {return 0.;}
 }
 
-SimuState SimulationTask::update()
+SimuState SimulationTask::update(std::list<CellElem*>& to_delete_elem)
 {
     double frame_time = get_time();
     if (frame_time<m_last_update_time+UPDATE_TIME)
@@ -44,9 +45,10 @@ SimuState SimulationTask::update()
     while (!m_event_manager.empty())
     {
         event = m_event_manager.popFirstEvent();
-		simuState = process_event(event);
+		simuState = process_event(event, to_delete_elem);
 		if (simuState!=CONTINUE)
 			{return simuState;}
     }
+ 
     return simuState;
 }

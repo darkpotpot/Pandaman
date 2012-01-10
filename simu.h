@@ -13,7 +13,8 @@ public:
     SimulationTask();
     SimulationTask(ClockObject *global_clock, Controler *controler);
     void addEntity(Entity* entity);
-    SimuState update();
+    void removeEntity(Entity* entity);
+    SimuState update(std::list<CellElem*>& to_delete_elem);
     
 private:
     EventManager m_event_manager;

@@ -213,6 +213,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\food.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\global.cpp"
 				>
 			</File>
@@ -340,6 +344,10 @@
 			</File>
 			<File
 				RelativePath=".\event_manager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\food.h"
 				>
 			</File>
 			<File

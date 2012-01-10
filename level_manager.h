@@ -22,6 +22,8 @@ class LevelManager:public AsyncTask{
     protected:
         virtual AsyncTask::DoneStatus do_task();
     private:
+        void deleteCellElems(std::list<CellElem*>& to_delete_elem);
+        //
         Level* mLevel;
         LevelDisplayer mDisplayer;
         Controler mControler;

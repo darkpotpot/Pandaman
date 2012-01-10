@@ -4,6 +4,7 @@
 #include "grid.h"
 #include "character.h"
 #include "monster.h"
+#include "food.h"
 #include "nodePath.h"
 #include "tinyxml/tinyxml.h"
 #include "level_loader.h"
@@ -19,6 +20,9 @@ public:
     NodePath* get_root_node();
     void addEntity(Entity* entity);
     void add_monster(Monster* m);
+    void add_food(Food* m, int x, int y);
+    void delete_food(Food* m);
+    void delete_monster(Monster* m);
     std::list<Monster*>::iterator get_monster_iterator();
     std::list<Monster*>::iterator get_monster_list_end();
 

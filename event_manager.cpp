@@ -33,29 +33,39 @@ void EventManager::cleanEvents()
 }
 
 
-SimuState character_monster_collision(CellElem* character, CellElem* monster)
+SimuState character_monster_collision(CellElem* character, CellElem* monster, std::list<CellElem*>& to_delete_list)
 {
 return RESTART;
 }
 
-SimuState process_collision_event(CollisionEvent* event)
+SimuState character_food_collision(CellElem* character, CellElem* food, std::list<CellElem*>& to_delete_list)
+{
+to_delete_list.push_back(food);
+return CONTINUE;
+}
+
+SimuState process_collision_event(CollisionEvent* event, std::list<CellElem*>& to_delete_list)
 {
 	CellElem* elem1 = event->get_element1();
 	CellElem* elem2 = event->get_element2();
 	if (elem1->getType()==CHARACTER && elem2->getType()==MONSTER1)
-		{return character_monster_collision(elem1, elem2);}
+		{return character_monster_collision(elem1, elem2, to_delete_list);}
 	else if (elem2->getType()==MONSTER1 && elem1->getType()==CHARACTER)
-		{return character_monster_collision(elem2, elem1);}
+		{return character_monster_collision(elem2, elem1, to_delete_list);}
+	else if (elem1->getType()==CHARACTER && elem2->getType()==FOOD)
+		{return character_food_collision(elem1, elem2, to_delete_list);}
+	else if (elem2->getType()==FOOD && elem1->getType()==CHARACTER)
+		{return character_food_collision(elem2, elem1, to_delete_list);}
 	return CONTINUE;
 
 }
 
-SimuState process_event(SimulationEvent* event)
+SimuState process_event(SimulationEvent* event, std::list<CellElem*>& to_delete_list)
 {
 	EventType event_type = event->get_type();
 	if (event_type==COLLISION)
 	{
-		return process_collision_event(dynamic_cast<CollisionEvent*>(event));
+		return process_collision_event(dynamic_cast<CollisionEvent*>(event), to_delete_list);
 	}
 	return CONTINUE;
 

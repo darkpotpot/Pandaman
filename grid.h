@@ -17,6 +17,7 @@ class Grid:public Displayable
         bool is_accessible(int x, int y);
         list<CellElem*> getCellElems(int x, int y);
         void addElem(int x, int y, CellElem *elem);
+        void removeElem(int x, int y, CellElem *elem);
         int getWidth();
         int getHeight();
         void move(int x_from, int y_from, int x_to, int y_to, CellElem *elem, EventManager& event_manager);

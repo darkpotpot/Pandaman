@@ -9,6 +9,7 @@ class Displayer
 {
 public:
     Displayer();
+    virtual ~Displayer();
     virtual int update(Displayable* entity);
 };
 

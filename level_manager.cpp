@@ -3,7 +3,7 @@
 #include "monster.h"
 #include "simu_state.h"
 
-int NB_LEVELS = 2;
+int NB_LEVELS = 3;
 
 
 LevelManager::LevelManager(WindowFramework *window, PandaFramework* framework):mDisplayer(LevelDisplayer(window, framework)), mControler(Controler(*framework)), mLevel(NULL), mSimulationTask(NULL), mCurrentLevel(0){
@@ -69,9 +69,10 @@ void LevelManager::previousLevel(){
 
 AsyncTask::DoneStatus LevelManager::do_task(){
 	SimuState simuState;
+    std::list<CellElem*> to_delete_elem;
     if(mSimulationTask!=NULL)
 	{
-		simuState = mSimulationTask->update();
+		simuState = mSimulationTask->update(to_delete_elem);
 	}
 	if (simuState==LEVEL_FINISHED)
 	{
@@ -82,5 +83,29 @@ AsyncTask::DoneStatus LevelManager::do_task(){
 		cleanCurrentLevelIfn();
 		loadCurrentLevel();
 	}
+    
+    deleteCellElems(to_delete_elem);
     return AsyncTask::DS_cont;
+}
+
+void LevelManager::deleteCellElems(std::list<CellElem*>& to_delete_elem)
+{
+
+   CellElemType cell_elem_type;
+   std::list<CellElem*>::iterator cell_it;
+   for (cell_it=to_delete_elem.begin();cell_it!=to_delete_elem.end();cell_it++)
+   {
+        cell_elem_type = (*cell_it)->getType();
+        if (cell_elem_type==MONSTER1)
+        {
+            mSimulationTask->removeEntity(dynamic_cast<Entity*>(*cell_it));
+            mLevel->delete_monster(dynamic_cast<Monster*>(*cell_it));            
+           }
+        else if (cell_elem_type==FOOD)
+        {
+            mLevel->delete_food(dynamic_cast<Food*>(*cell_it));
+        }
+
+    }
+
 }

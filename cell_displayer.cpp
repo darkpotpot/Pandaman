@@ -32,6 +32,11 @@ void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* mode
                     case CHARACTER:
                         (*it)->set_displayer(new CharacterDisplayer("panda-model", parentNode, model_manager));
                         break;
+                    case FOOD:
+                        EntityDisplayer * entity_displayer = new EntityDisplayer("teapot", parentNode, model_manager, 5, LPoint3f(1,1,1));
+                        (*it)->set_displayer(entity_displayer);
+                        entity_displayer->update((*it));
+                        break;
                 }
             }
         }
