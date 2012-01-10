@@ -8,6 +8,7 @@ Level::Level(const char* pMapname):m_character(NULL), m_root_node(NodePath(pMapn
     m_grid = new Grid(levelLoader.getWidth(), levelLoader.getHeight());
     fillMapCells(levelLoader.getLayer(string("World")), levelLoader);
     fillMapCells(levelLoader.getLayer(string("Character")), levelLoader);
+	fillMapCells(levelLoader.getLayer(string("Objects")), levelLoader);
     assert ((m_character != NULL));
 }
 
@@ -30,12 +31,9 @@ void Level::fillMapCells(TiXmlElement* worldElem, LevelLoader& levelLoader){
                     break;
                 case MONSTER1:
                     add_monster(new Monster(j, i, m_grid));
-                    //HACK to test food until piou create some with tile editor
-                    //add_food(new Food(j, i), j, i);
                     break;
                 case FOOD:
                     add_food(new Food(j, i), j, i);
-                    //std::cout<<"food found!!"<<endl;
                     break;
             }
             worldElem = worldElem->NextSiblingElement();

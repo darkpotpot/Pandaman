@@ -58,6 +58,8 @@ int LevelLoader::getCellElem(string gid){
         return CHARACTER;
     else if (tileset == string("monster1.tsx"))
         return MONSTER1;
+	else if (tileset == string("food.tsx"))
+        return FOOD;
     else
         return EMPTY;
 
