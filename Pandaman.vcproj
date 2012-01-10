@@ -391,6 +391,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\simu_state.h"
+				>
+			</File>
+			<File
 				RelativePath=".\tinyxml\tinystr.h"
 				>
 			</File>

@@ -59,7 +59,7 @@ void Grid::move(int x_from, int y_from, int x_to, int y_to, CellElem* elem, Even
         list<CellElem*>::iterator it;
         for (it=cell_elem_list.begin();it!=cell_elem_list.end();it++)
         {
-        event_manager.addEvent(new CollisionEvent(elem, (*it), this));
+        event_manager.addEvent(new CollisionEvent(elem, (*it)));
         }
             
     }

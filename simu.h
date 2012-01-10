@@ -1,22 +1,19 @@
 #include "entity.h"
 #include "controler.h"
-#include "asyncTask.h"
 #include "clockObject.h"
 #include "global.h"
 #include "event_manager.h"
+#include "simu_state.h"
 #include <list>
 
 
-class SimulationTask:public AsyncTask
+class SimulationTask
 {
 public:
     SimulationTask();
     SimulationTask(ClockObject *global_clock, Controler *controler);
     void addEntity(Entity* entity);
-    ALLOC_DELETED_CHAIN(SimulationTask);
-    
-protected:
-    virtual AsyncTask::DoneStatus do_task();
+    SimuState update();
     
 private:
     EventManager m_event_manager;

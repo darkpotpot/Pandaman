@@ -43,6 +43,7 @@ int main(int argc, char *argv[]) {
 
     PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();
     taskMgr->add(new GenericAsyncTask("Update lerp", &update_lerp, (void*) CIntervalManager::get_global_ptr()));
+	taskMgr->add(&level_manager);
     // Run the engine.
     framework.main_loop();
     // Shut down the engine when done.

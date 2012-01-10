@@ -1,17 +1,11 @@
 #ifndef EventManager_H
 #define EventManager_H
 #include <list>
+#include "simu_state.h"
+#include "cell.h"
+#include "event.h"
 
-enum EventType {COLLISION};
 
-class SimulationEvent{
-public:
-    SimulationEvent(EventType event_type);
-    EventType get_type();
-    
-private:
-    EventType m_event_type;
-};
 
 class EventManager{
     
@@ -26,5 +20,8 @@ public:
 private:
     std::list<SimulationEvent*> m_event_list;
 };
+
+SimuState process_event(SimulationEvent* event);
+
 
 #endif

@@ -1,6 +1,7 @@
 #include "simu.h"
 #include "clockObject.h"
 #include "event.h"
+#include "simu_state.h"
 
 
 
@@ -23,11 +24,11 @@ double SimulationTask::get_time()
         {return 0.;}
 }
 
-AsyncTask::DoneStatus SimulationTask::do_task()
+SimuState SimulationTask::update()
 {
     double frame_time = get_time();
     if (frame_time<m_last_update_time+UPDATE_TIME)
-        {return AsyncTask::DS_cont;
+        {return CONTINUE;
         }
     m_controler->update();
     m_last_update_time = frame_time;
@@ -38,11 +39,14 @@ AsyncTask::DoneStatus SimulationTask::do_task()
         }
     
     //
+	SimuState simuState(CONTINUE);
     SimulationEvent * event;
     while (!m_event_manager.empty())
     {
         event = m_event_manager.popFirstEvent();
-        cout<<"Event"<<event->get_type()<<endl;
+		simuState = process_event(event);
+		if (simuState!=CONTINUE)
+			{return simuState;}
     }
-    return AsyncTask::DS_cont;
+    return simuState;
 }
