@@ -85,6 +85,10 @@ AsyncTask::DoneStatus LevelManager::do_task(){
 	}
     
     deleteCellElems(to_delete_elem);
+    if (Food::noMoreFood())
+    {
+		nextLevel();
+    }
     return AsyncTask::DS_cont;
 }
 

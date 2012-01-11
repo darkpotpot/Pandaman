@@ -11,6 +11,7 @@ class Food:public CellElem{
         virtual bool blocks(){return false;};
         virtual int get_x(){return m_x;};
         virtual int get_y(){return m_y;};
+        static bool noMoreFood();
     private:
         static int nb_food;
         int m_x;

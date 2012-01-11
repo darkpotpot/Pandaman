@@ -8,7 +8,7 @@ Food::Food(int x, int y):m_x(x), m_y(y)
 { nb_food = nb_food+1; }
 
 Food::~Food()
-{
-    nb_food = nb_food-1;
+{ nb_food = nb_food-1; }
 
-}
+bool Food::noMoreFood()
+{ return (nb_food==0); }
