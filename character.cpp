@@ -4,7 +4,7 @@
 #include "entity.h"
 #include "character.h"
 #include "command.h"
-
+#include <iostream>
 using namespace std;
 
 int print_message(string s)
@@ -21,6 +21,16 @@ MainCharacter::MainCharacter(Grid *grid):Entity(grid)
 
 MainCharacter::MainCharacter(int x, int y, Grid *grid):Entity(x, y, grid)
 {}
+
+MainCharacter::~MainCharacter(){
+    CharacterState* state;
+    while (!m_states.empty())
+    {
+        state = m_states.front();
+        m_states.remove(state);
+        delete state;
+    }
+}
 
 void MainCharacter::update(EventManager& event_manager)
 {
@@ -68,6 +78,7 @@ void MainCharacter::update(EventManager& event_manager)
         Entity::move_to_ifp(new_x, new_y, event_manager);
     }
     Entity::update(event_manager);
+    updateStates();
 
 }
 
@@ -90,4 +101,44 @@ Command MainCharacter::get_command()
 bool MainCharacter::command_list_empty()
 {
 return m_last_command.empty();
+}
+
+
+void MainCharacter::updateStates()
+{
+    list<CharacterState*> to_remove;
+    list<CharacterState*>::iterator it;
+    for (it=m_states.begin(); it!=m_states.end();it++)
+    {
+        (*it)->update();
+        if((*it)->finished())
+        {
+            to_remove.push_back(*it);
+        }
+    }
+    CharacterState* state;
+    while (!to_remove.empty())
+    {
+        state = to_remove.front();
+        m_states.remove(state);
+        to_remove.remove(state);
+        delete state;
+    }
+}
+
+void MainCharacter::addState(CharStateType state, int nb_turn)
+{
+    CharacterState* char_state = new CharacterState(state, nb_turn);
+    m_states.push_back(char_state);
+}
+
+bool MainCharacter::hasState(CharStateType state)
+{
+    std::list<CharacterState*>::iterator it;
+    for (it = m_states.begin(); it!=m_states.end(); it++)
+    {
+        if ((*it)->isStateType(state))
+        {return true;}
+    }
+    return false;
 }

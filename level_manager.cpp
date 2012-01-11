@@ -83,33 +83,41 @@ AsyncTask::DoneStatus LevelManager::do_task(){
 		cleanCurrentLevelIfn();
 		loadCurrentLevel();
 	}
-    
-    deleteCellElems(to_delete_elem);
-    if (Food::noMoreFood())
-    {
-		nextLevel();
+    else {
+        deleteCellElems(to_delete_elem);
+        if (Food::noMoreFood())
+        {
+		    nextLevel();
+        }
     }
     return AsyncTask::DS_cont;
 }
 
 void LevelManager::deleteCellElems(std::list<CellElem*>& to_delete_elem)
 {
-
-   CellElemType cell_elem_type;
-   std::list<CellElem*>::iterator cell_it;
-   for (cell_it=to_delete_elem.begin();cell_it!=to_delete_elem.end();cell_it++)
-   {
-        cell_elem_type = (*cell_it)->getType();
+    //by using front and remove we make sure that each element is only 
+    //deleted once(remove removes all values equal to passed value)
+    CellElemType cell_elem_type;
+    CellElem* cell_elem;
+    while (!to_delete_elem.empty())
+    {
+        cell_elem = to_delete_elem.front();
+        to_delete_elem.remove(cell_elem);
+        cell_elem_type = cell_elem->getType();
         if (cell_elem_type==MONSTER1)
         {
-            mSimulationTask->removeEntity(dynamic_cast<Entity*>(*cell_it));
-            mLevel->delete_monster(dynamic_cast<Monster*>(*cell_it));            
+            mSimulationTask->removeEntity(dynamic_cast<Entity*>(cell_elem));
+            mLevel->delete_monster(dynamic_cast<Monster*>(cell_elem));            
            }
         else if (cell_elem_type==FOOD)
         {
-            mLevel->delete_food(dynamic_cast<Food*>(*cell_it));
+            mLevel->delete_food(dynamic_cast<Food*>(cell_elem));
         }
-
+        else if (cell_elem_type==BONUS)
+        {
+            mLevel->delete_bonus(dynamic_cast<Bonus*>(cell_elem));
+        }
+    
     }
 
 }

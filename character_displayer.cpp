@@ -9,6 +9,7 @@
 #include "animControlCollection.h"
 #include "animControl.h"
 #include "character_displayer.h"
+#include "character.h"
 #include "entity_displayer.h"
 #include "global.h"
 #include <string>
@@ -46,6 +47,16 @@ int CharacterDisplayer::update(Displayable* entity)
     float y = (float)(0.5*CASE_RATIO+CASE_RATIO*entity->get_y());
     float drawing_x = m_drawing.get_x();
     float drawing_y = m_drawing.get_y();
+    //TODO GROM : change function prototype to take MainCharacter and avoid dynamic cast
+    MainCharacter* main_character = dynamic_cast<MainCharacter*>(entity);
+    if (main_character->hasState(INVICIBLE))
+    {
+        m_drawing.set_color(1,0,0,1);
+    }
+    else
+    {
+        m_drawing.set_color_off();
+    }
     if (max(abs(x-drawing_x),abs(y-drawing_y)) <0.01*CASE_RATIO)
         {
             m_anim_collection.pose("panda_walk_character", m_anim_collection.get_frame());

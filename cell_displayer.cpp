@@ -33,10 +33,19 @@ void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* mode
                         (*it)->set_displayer(new CharacterDisplayer("panda-model", parentNode, model_manager));
                         break;
                     case FOOD:
-                        EntityDisplayer * entity_displayer = new EntityDisplayer("teapot", parentNode, model_manager, 5, LPoint3f(1,1,1));
+                        {
+                        EntityDisplayer * entity_displayer = new EntityDisplayer("jack", parentNode, model_manager, 1, LPoint3f(2,2,2));
                         (*it)->set_displayer(entity_displayer);
                         entity_displayer->update((*it));
                         break;
+                        }
+                    case BONUS:
+                        {
+                        EntityDisplayer * bonus_displayer = new EntityDisplayer("teapot", parentNode, model_manager, 5, LPoint3f(1,1,1));
+                        (*it)->set_displayer(bonus_displayer);
+                        bonus_displayer->update((*it));
+                        break;
+                        }
                 }
             }
         }

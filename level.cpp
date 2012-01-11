@@ -1,6 +1,7 @@
 #include "level.h"
 #include "monster.h"
 #include "cell.h"
+#include "bonus.h"
 
 Level::Level(const char* pMapname):m_character(NULL), m_root_node(NodePath(pMapname))
 {
@@ -9,6 +10,10 @@ Level::Level(const char* pMapname):m_character(NULL), m_root_node(NodePath(pMapn
     fillMapCells(levelLoader.getLayer(string("World")), levelLoader);
     fillMapCells(levelLoader.getLayer(string("Character")), levelLoader);
 	fillMapCells(levelLoader.getLayer(string("Objects")), levelLoader);
+    //HACK for bonus test
+    addBonus(INVICIBLE, 20,6,6);
+    addBonus(INVICIBLE, 20,5,5);
+    //
     assert ((m_character != NULL));
 }
 
@@ -62,6 +67,11 @@ void Level::add_food(Food* food, int x, int y)
     m_grid->addElem(x,y,food);
 }
 
+void Level::addBonus(CharStateType stateType, int nbTurn, int x, int y)
+{
+ m_grid->addElem(x,y,new Bonus(x, y, nbTurn, stateType));
+}
+
 std::list<Monster*>::iterator Level::get_monster_iterator()
 { return m_monster.begin(); }
 
@@ -75,6 +85,8 @@ void Level::add_monster(Monster* m)
     addEntity(m);
 }
 
+
+//TODO GROM: refactor two following methods in one
 void Level::delete_food(Food* food)
 {
     m_grid->removeElem(food->get_x(), food->get_y(), dynamic_cast<CellElem*>(food));
@@ -82,6 +94,16 @@ void Level::delete_food(Food* food)
     food->set_displayer(NULL);
     delete food;
 }
+
+void Level::delete_bonus(Bonus* bonus)
+{
+    m_grid->removeElem(bonus->get_x(), bonus->get_y(), dynamic_cast<CellElem*>(bonus));
+    delete bonus->getDisplayer();
+    bonus->set_displayer(NULL);
+    delete bonus;
+}
+
+
 void Level::delete_monster(Monster* m)
 {
     m_monster.remove(m);

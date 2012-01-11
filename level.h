@@ -5,6 +5,7 @@
 #include "character.h"
 #include "monster.h"
 #include "food.h"
+#include "bonus.h"
 #include "nodePath.h"
 #include "tinyxml/tinyxml.h"
 #include "level_loader.h"
@@ -21,7 +22,10 @@ public:
     void addEntity(Entity* entity);
     void add_monster(Monster* m);
     void add_food(Food* m, int x, int y);
+    void addBonus(CharStateType stateType, int nbTurn, int x, int y);
+    //TODO GROM: refactor two following methods in one
     void delete_food(Food* m);
+    void delete_bonus(Bonus* m);
     void delete_monster(Monster* m);
     std::list<Monster*>::iterator get_monster_iterator();
     std::list<Monster*>::iterator get_monster_list_end();
