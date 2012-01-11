@@ -1,5 +1,6 @@
 #include "level_loader.h"
 #include "cell.h"
+#include "characterstate.h"
 
 
 LevelLoader::LevelLoader(const char* pMapname){
@@ -50,17 +51,49 @@ TiXmlElement* LevelLoader::getLayer(string layerName){
     return mLayers[layerName];
 }
 
-int LevelLoader::getCellElem(string gid){
+CellInfo LevelLoader::getCellElem(string gid){
     string tileset = mTilesets[gid];
+	int cellType = -1, cellAdditionalInfo = -1;
     if (tileset == string("wall.tsx"))
-        return WALL;
+	{
+		cellType = WALL;
+	}
     else if (tileset == string("panda.tsx"))
-        return CHARACTER;
+	{
+        cellType = CHARACTER;
+	}
     else if (tileset == string("monster1.tsx"))
-        return MONSTER1;
+	{
+        cellType = MONSTER1;
+	}
 	else if (tileset == string("food.tsx"))
-        return FOOD;
+	{
+        cellType = FOOD;
+	}
+	else if (tileset == string("speed.tsx"))
+	{
+		cellType = BONUS;
+        cellAdditionalInfo = FAST;
+	}
+	else if (tileset == string("invincible.tsx"))
+	{
+		cellType = BONUS;
+        cellAdditionalInfo = INVINCIBLE;
+	}
+	else if (tileset == string("drunk.tsx"))
+	{
+		cellType = BONUS;
+        cellAdditionalInfo = DRUNK;
+	}
+	else if (tileset == string("random.tsx"))
+	{
+		cellType = BONUS;
+        cellAdditionalInfo = RANDOM;
+	}
     else
-        return EMPTY;
-
+	{
+        cellType = EMPTY;
+	}
+	CellInfo cell = {cellType, cellAdditionalInfo};
+	return cell;
 }

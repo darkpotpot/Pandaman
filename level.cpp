@@ -10,10 +10,6 @@ Level::Level(const char* pMapname):m_character(NULL), m_root_node(NodePath(pMapn
     fillMapCells(levelLoader.getLayer(string("World")), levelLoader);
     fillMapCells(levelLoader.getLayer(string("Character")), levelLoader);
 	fillMapCells(levelLoader.getLayer(string("Objects")), levelLoader);
-    //HACK for bonus test
-    addBonus(INVICIBLE, 20,6,6);
-    addBonus(INVICIBLE, 20,5,5);
-    //
     assert ((m_character != NULL));
 }
 
@@ -25,7 +21,8 @@ void Level::fillMapCells(TiXmlElement* worldElem, LevelLoader& levelLoader){
     assert(worldElem);
     for (int i=m_grid->getHeight() - 1; i > -1; i--){ //panda is not sorted in the same order than the map
         for (int j=0; j < m_grid->getWidth(); j++){
-            switch(levelLoader.getCellElem(string(worldElem->Attribute("gid")))){
+			CellInfo cell = levelLoader.getCellElem(string(worldElem->Attribute("gid")));
+			switch(cell.type){
                 case WALL:
                     m_grid->addElem(j, i, new Wall());
                     break;
@@ -40,6 +37,9 @@ void Level::fillMapCells(TiXmlElement* worldElem, LevelLoader& levelLoader){
                 case FOOD:
                     add_food(new Food(j, i), j, i);
                     break;
+				case BONUS:
+					addBonus(static_cast<CharStateType>(cell.additionalInfo), 20, j, i);
+					break;
             }
             worldElem = worldElem->NextSiblingElement();
         }

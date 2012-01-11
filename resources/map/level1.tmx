@@ -5,6 +5,10 @@
  <tileset firstgid="3" source="panda.tsx"/>
  <tileset firstgid="4" source="monster1.tsx"/>
  <tileset firstgid="5" source="food.tsx"/>
+ <tileset firstgid="6" source="fast.tsx"/>
+ <tileset firstgid="7" source="invincible.tsx"/>
+ <tileset firstgid="8" source="drunk.tsx"/>
+ <tileset firstgid="9" source="random.tsx"/>
  <layer name="World" width="10" height="10">
   <data>
    <tile gid="1"/>
@@ -109,7 +113,7 @@
    <tile gid="1"/>
   </data>
  </layer>
- <layer name="Character" width="10" height="10">
+ <layer name="Character" width="10" height="10" visible="0">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -145,7 +149,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="6"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -227,9 +231,10 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="7"/>
    <tile gid="5"/>
    <tile gid="0"/>
+   <tile gid="6"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -248,6 +253,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="9"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -265,6 +271,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="8"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -274,10 +281,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="7"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>

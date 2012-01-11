@@ -49,7 +49,7 @@ int CharacterDisplayer::update(Displayable* entity)
     float drawing_y = m_drawing.get_y();
     //TODO GROM : change function prototype to take MainCharacter and avoid dynamic cast
     MainCharacter* main_character = dynamic_cast<MainCharacter*>(entity);
-    if (main_character->hasState(INVICIBLE))
+    if (main_character->hasState(INVINCIBLE))
     {
         m_drawing.set_color(1,0,0,1);
     }

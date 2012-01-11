@@ -1,7 +1,7 @@
 #ifndef CHARACTERSTATE_H
 #define CHARACTERSTATE_H
 
-enum CharStateType {INVICIBLE, FAST, DRUNK};
+enum CharStateType {INVINCIBLE, FAST, DRUNK, RANDOM}; //todo: voir avec Grom si c est bien un characterstatetype car ça sert pour les bonus
 
 class CharacterState
 {

@@ -38,7 +38,7 @@ void EventManager::cleanEvents()
 SimuState character_monster_collision(CellElem* character, CellElem* monster, std::list<CellElem*>& to_delete_list)
 {
 MainCharacter* main_character = dynamic_cast<MainCharacter*>(character);
-if (main_character->hasState(INVICIBLE))
+if (main_character->hasState(INVINCIBLE))
 {
     to_delete_list.push_back(monster);
     return CONTINUE;

@@ -7,13 +7,19 @@
 
 using namespace std;
 
+struct CellInfo{
+	int type;
+	int additionalInfo;
+};
+
+
 class LevelLoader{
     public:
         LevelLoader(const char* pMapname);
         int getWidth();
         int getHeight();
         TiXmlElement* getLayer(string layerName);
-        int getCellElem(string gid);
+        CellInfo getCellElem(string gid);
     private:
         int mWidth;
         int mHeight;
