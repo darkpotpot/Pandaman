@@ -50,7 +50,7 @@ SimuState process_collision_event(CollisionEvent* event, std::list<CellElem*>& t
 	CellElem* elem2 = event->get_element2();
 	if (elem1->getType()==CHARACTER && elem2->getType()==MONSTER1)
 		{return character_monster_collision(elem1, elem2, to_delete_list);}
-	else if (elem2->getType()==MONSTER1 && elem1->getType()==CHARACTER)
+	else if (elem1->getType()==MONSTER1 && elem2->getType()==CHARACTER)
 		{return character_monster_collision(elem2, elem1, to_delete_list);}
 	else if (elem1->getType()==CHARACTER && elem2->getType()==FOOD)
 		{return character_food_collision(elem1, elem2, to_delete_list);}
