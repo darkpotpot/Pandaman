@@ -19,6 +19,7 @@ public:
     EntityDisplayer(string model_name, NodePath *parentNode, ModelManager *model_manager, float altitude, LPoint3f scale);
     virtual ~EntityDisplayer();
     virtual int update(Displayable* entity);
+	NodePath getDrawing() {return m_drawing;};
 protected:
     static int idx;
     float m_altitude;

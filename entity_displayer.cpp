@@ -35,9 +35,11 @@ EntityDisplayer::EntityDisplayer(string model_name, NodePath *parentNode, ModelM
 :m_model_name(model_name),mParentNode(parentNode), m_PosPace(NULL), m_altitude(0.)
 {
     EntityDisplayer::idx = EntityDisplayer::idx+1;
-    m_drawing = model_manager->loadModel(model_name);
+	m_drawing = NodePath(model_name);
+    NodePath drawing = model_manager->loadModel(model_name);
+	drawing.set_scale(0.008, 0.008, 0.008);
+	drawing.reparent_to(m_drawing);
     m_drawing.reparent_to(*mParentNode);
-    m_drawing.set_scale(0.008, 0.008, 0.008);
     m_PosPace = new CMetaInterval(string("pandaPace")+to_string(EntityDisplayer::idx));
 }
 
