@@ -20,8 +20,8 @@ enum KeyboardEvent
 class KeyboardManager{
 	public:
 		KeyboardManager(PandaFramework* framework);
-		void register_key(KeyboardEvent event_name, EventHandler::EventCallbackFunction *function, void *data);
-		bool unregister_key(KeyboardEvent event_name);
+		void register_key(KeyboardEvent kevent, EventHandler::EventCallbackFunction *function, void *data);
+		bool unregister_key(KeyboardEvent kevent);
 	private:
 		PandaFramework* m_pFrameWork;
 		map<KeyboardEvent, string> m_KeyboardEvents;

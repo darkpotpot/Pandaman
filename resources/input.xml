@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<keys>
+    <key name="SWITCH_CAMERA_KEY" key="c"/>
+    <key name="MOVE_LEFT_KEY" key="arrow_left"/>
+    <key name="MOVE_RIGHT_KEY" key="arrow_right"/>
+    <key name="MOVE_UP_KEY" key="arrow_up"/>
+    <key name="MOVE_DOWN_KEY" key="arrow_down"/>
+</keys>
