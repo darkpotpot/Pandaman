@@ -7,10 +7,9 @@
 #include <stdlib.h>
 #include <time.h>
 
-
-
 #include "level_manager.h"
 
+#include "keyboard_manager.h"
 
 AsyncTask::DoneStatus update_lerp(GenericAsyncTask* task, void* data) {
     ((CIntervalManager*)data)->step();
@@ -27,6 +26,10 @@ void previousLevel(const Event * theEvent, void * data){
     levelManager->previousLevel();
 }
 
+void test(const Event * theEvent, void * data){
+    cout << "toto" << endl;
+}
+
 int main(int argc, char *argv[]) {
     srand(time(NULL));
     PandaFramework framework;
@@ -35,15 +38,17 @@ int main(int argc, char *argv[]) {
     WindowFramework *window = framework.open_window();
     window->enable_keyboard();
 
-
-    LevelManager level_manager = LevelManager(window, &framework);
+	KeyboardManager km(&framework);
+    LevelManager level_manager = LevelManager(window, &framework, &km);
     level_manager.nextLevel();
-    framework.define_key("+", "LevelUp", nextLevel, (void *)&level_manager); 
-    framework.define_key("-", "LevelDown", previousLevel, (void *)&level_manager); 
+	//hack pour changer de niveau manuellement
+    framework.define_key("+", "LevelUp", nextLevel, &level_manager); 
+    framework.define_key("-", "LevelDown", previousLevel, &level_manager); 
 
     PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();
     taskMgr->add(new GenericAsyncTask("Update lerp", &update_lerp, (void*) CIntervalManager::get_global_ptr()));
 	taskMgr->add(&level_manager);
+
     // Run the engine.
     framework.main_loop();
     // Shut down the engine when done.

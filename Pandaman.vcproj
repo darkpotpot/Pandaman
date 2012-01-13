@@ -241,6 +241,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\keyboard_manager.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\level.cpp"
 				>
 			</File>
@@ -380,6 +384,10 @@
 			</File>
 			<File
 				RelativePath=".\ia.h"
+				>
+			</File>
+			<File
+				RelativePath=".\keyboard_manager.h"
 				>
 			</File>
 			<File

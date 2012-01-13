@@ -10,14 +10,15 @@ float FOLLOW_DISTANCE = 200.f;
 void switch_camera(const Event * theEvent, void * data)
 { (static_cast<WorldCamera*>(data))->switchCamera(); }
 
-WorldCamera::WorldCamera(WindowFramework* window, PandaFramework* framework):m_level(NULL){
+WorldCamera::WorldCamera(WindowFramework* window, KeyboardManager* km):m_level(NULL){
     mCamera = window->get_camera_group();
 	m_CamType = 0;
-	framework->define_key("c", "SwitchCamera", switch_camera, this); 
+	m_pKeyboardManager = km;
 }
 
 void WorldCamera::displayLevel(Level* level)
 {
+	m_pKeyboardManager->register_key(SWITCH_CAMERA_KEY, switch_camera, this);
 	assert(m_level == NULL);
 	m_level = level;
 	resetCamera();
@@ -25,6 +26,7 @@ void WorldCamera::displayLevel(Level* level)
 
 void WorldCamera::undisplayLevel()
 {
+	m_pKeyboardManager->unregister_key(SWITCH_CAMERA_KEY);
 	assert(m_level != NULL);
 	m_level = NULL;
 }

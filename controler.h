@@ -1,6 +1,6 @@
 #ifndef Controler_H
 #define Controler_H
-#include "pandaFramework.h"
+#include "keyboard_manager.h"
 #include "character.h"
 #include <map>
 
@@ -9,7 +9,7 @@ class CommandLauncher;
 class Controler
 {
 public:
-    Controler(PandaFramework &framework);
+    Controler(KeyboardManager* km);
     ~Controler();
     void moveLeft(const Event * theEvent, void * data);
     void apply_command(Command command);
@@ -21,7 +21,7 @@ private:
     void set_command_state(Command command, bool state);
     bool get_command_state(Command command);
     
-    void initCommands(PandaFramework &framework);
+    void initCommands(KeyboardManager* km);
     MainCharacter *m_character;
     std::list<CommandLauncher*> m_command_list;
     std::map<Command, bool> m_command_state;
@@ -30,23 +30,21 @@ private:
 
 class CommandLauncher{
     public:
-        CommandLauncher(string key, string name, Controler *controler, Command command);
+        CommandLauncher(KeyboardEvent key, Controler *controler, Command command);
         virtual void launch_command();
-        string get_name();
-        string get_key();
+        KeyboardEvent get_key_event();
 
     protected:
         Controler *m_controler;
         Command m_command;
         
     private:
-        string m_name;
-        string m_key;
+        KeyboardEvent m_key_event;
     };
     
 class CommandCanceler:public CommandLauncher{
     public:
-        CommandCanceler(string key, string name, Controler *controler, Command command);
+        CommandCanceler(KeyboardEvent key, Controler *controler, Command command);
         virtual void launch_command();
     
     };

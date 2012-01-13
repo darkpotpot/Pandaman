@@ -6,7 +6,7 @@
 int NB_LEVELS = 3;
 
 
-LevelManager::LevelManager(WindowFramework *window, PandaFramework* framework):mDisplayer(LevelDisplayer(window, framework)), mControler(Controler(*framework)), mLevel(NULL), mSimulationTask(NULL), mCurrentLevel(0){
+LevelManager::LevelManager(WindowFramework *window, PandaFramework* framework, KeyboardManager* km):mDisplayer(LevelDisplayer(window, framework, km)), mControler(Controler(km)), mLevel(NULL), mSimulationTask(NULL), mCurrentLevel(0){
 }
 
 LevelManager::~LevelManager()

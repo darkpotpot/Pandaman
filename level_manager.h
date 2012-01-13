@@ -6,14 +6,13 @@
 #include "level_displayer.h"
 #include "level.h"
 #include "controler.h"
-#include "level_displayer.h"
 #include "simu.h"
 #include "asyncTask.h"
-
+#include "keyboard_manager.h"
 
 class LevelManager:public AsyncTask{
     public:
-        LevelManager(WindowFramework *window, PandaFramework* framework);
+        LevelManager(WindowFramework *window, PandaFramework* framework, KeyboardManager* km);
 		~LevelManager();
         void loadLevel(const char* pMapname);
         void nextLevel();

@@ -2,7 +2,9 @@
 #include "heightfield_displayer.h"
 #include "cell_displayer.h"
 
-LevelDisplayer::LevelDisplayer(WindowFramework* window, PandaFramework* framework):mWindow(window), mFramework(framework),mModelManager(ModelManager(window, framework)), mCamera(WorldCamera(window, framework)){
+LevelDisplayer::LevelDisplayer(WindowFramework* window, PandaFramework* framework, KeyboardManager* km):
+mWindow(window), mModelManager(ModelManager(window, framework)), mCamera(WorldCamera(window, km))
+{
 }
 
 
