@@ -1,7 +1,8 @@
 #ifndef Monster_H
 #define Monster_H
 #include "entity.h"
-#include "ia.h"
+
+#include "explore_ia.h"
 #include "event_manager.h"
 
 class Monster:public Entity{
@@ -13,7 +14,7 @@ public:
     virtual const CellElemType getType(){return MONSTER1;};
 
 private:
-    DirectionnalIA m_ia;
+    ExploreIA m_ia;
 };
 
 #endif

@@ -221,6 +221,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\explore_ia.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\food.cpp"
 				>
 			</File>
@@ -364,6 +368,10 @@
 			</File>
 			<File
 				RelativePath=".\event_manager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\explore_ia.h"
 				>
 			</File>
 			<File

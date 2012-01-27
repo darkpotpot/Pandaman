@@ -1,7 +1,5 @@
 #include "level.h"
-#include "monster.h"
 #include "cell.h"
-#include "bonus.h"
 
 Level::Level(const char* pMapname):m_character(NULL), m_root_node(NodePath(pMapname))
 {

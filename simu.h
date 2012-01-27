@@ -1,3 +1,6 @@
+#ifndef SIMU_H
+#define SIMU_H
+
 #include "entity.h"
 #include "controler.h"
 #include "clockObject.h"
@@ -26,3 +29,5 @@ private:
 
 //entity list
 };
+
+#endif

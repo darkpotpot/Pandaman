@@ -2,6 +2,7 @@
 #define IA_H
 
 #include "entity.h"
+#include "grid.h"
 
 class IA{
    
