@@ -14,7 +14,7 @@ public:
     void moveLeft(const Event * theEvent, void * data);
     void apply_command(Command command);
     void cancel_command(Command command);
-    void update();
+    void update(double current_time);
     void setMainCharacter(MainCharacter* mainCharacter);
     void removeMainCharacter();
 private:
@@ -25,6 +25,7 @@ private:
     MainCharacter *m_character;
     std::list<CommandLauncher*> m_command_list;
     std::map<Command, bool> m_command_state;
+    double m_last_update_time;
     
 };
 

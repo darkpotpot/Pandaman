@@ -9,7 +9,7 @@
 #include "nodePath.h"
 #include <string>
 #include "model_manager.h"
-
+#include "global.h"
 
 
 class EntityDisplayer : public Displayer
@@ -23,7 +23,7 @@ public:
 protected:
     static int idx;
     float m_altitude;
-    void update_pos(LPoint3f new_pos);
+    void update_pos(LPoint3f new_pos, double update_delay=UPDATE_TIME);
     NodePath m_drawing;
 private:
     NodePath *mParentNode;

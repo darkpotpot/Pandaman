@@ -21,6 +21,7 @@ public:
     bool hasState(CharStateType state);
 
 private:
+    void removeState(CharacterState* char_state);
     void updateStates();
     std::list<Command> m_last_command;
     std::list<CharacterState*> m_states;

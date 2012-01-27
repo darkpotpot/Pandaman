@@ -28,15 +28,15 @@ double SimulationTask::get_time()
 SimuState SimulationTask::update(std::list<CellElem*>& to_delete_elem)
 {
     double frame_time = get_time();
-    if (frame_time<m_last_update_time+UPDATE_TIME)
-        {return CONTINUE;
-        }
-    m_controler->update();
+    //if (frame_time<m_last_update_time+UPDATE_TIME)
+    //    {return CONTINUE;
+    //    }
     m_last_update_time = frame_time;
+    m_controler->update(frame_time);
     std::list<Entity*>::iterator it;
     for (it=m_entity_list.begin(); it!=m_entity_list.end();it++)
         {
-        (*it)->update(m_event_manager);
+        (*it)->timed_update(frame_time, m_event_manager);
         }
     
     //

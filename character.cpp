@@ -1,6 +1,6 @@
 #include <string>
 #include <iostream>
-
+#include "global.h"
 #include "entity.h"
 #include "character.h"
 #include "command.h"
@@ -128,15 +128,30 @@ void MainCharacter::updateStates()
     while (!to_remove.empty())
     {
         state = to_remove.front();
-        m_states.remove(state);
         to_remove.remove(state);
-        delete state;
+        removeState(state);
+
     }
+}
+
+void MainCharacter::removeState(CharacterState* char_state)
+{
+    m_states.remove(char_state);
+    if(char_state->isStateType(FAST)&& !hasState(FAST))
+    {
+        set_update_delay(UPDATE_TIME);
+    }
+    delete char_state;
 }
 
 void MainCharacter::addState(CharStateType state, int nb_turn)
 {
     CharacterState* char_state = new CharacterState(state, nb_turn);
+    if (state==FAST)
+        {
+            
+        set_update_delay(UPDATE_TIME/FAST_BONUS_RATIO);
+        }
     m_states.push_back(char_state);
 }
 

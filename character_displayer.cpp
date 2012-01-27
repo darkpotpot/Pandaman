@@ -19,7 +19,7 @@ extern int CASE_RATIO;
 extern double UPDATE_TIME;
 
 CharacterDisplayer::CharacterDisplayer(string model_name, NodePath *parentNode, ModelManager* model_manager)
-:EntityDisplayer( model_name, parentNode, model_manager)
+:EntityDisplayer( model_name, parentNode, model_manager), m_update_delay(UPDATE_TIME)
 {
 
     //m_drawing = model_manager->loadModel(model_name);
@@ -37,7 +37,17 @@ void CharacterDisplayer::init_animation(ModelManager* model_manager)
     AnimControl *anim_control = m_anim_collection.find_anim("panda_walk_character");
     int frame_rate = anim_control->get_frame_rate();
     int num_frame  = anim_control->get_num_frames();
-    float playrate = num_frame/(UPDATE_TIME*frame_rate);
+    float playrate = num_frame/(m_update_delay*frame_rate);
+    anim_control->set_play_rate(playrate);
+}
+
+void CharacterDisplayer::update_play_rate(double new_update_delay){
+    std::cout<<"updating delay time "<<new_update_delay<<endl;
+    m_update_delay = new_update_delay;
+    AnimControl *anim_control = m_anim_collection.find_anim("panda_walk_character");
+    int frame_rate = anim_control->get_frame_rate();
+    int num_frame  = anim_control->get_num_frames();
+    float playrate = num_frame/(m_update_delay*frame_rate);
     anim_control->set_play_rate(playrate);
 }
 
@@ -49,13 +59,22 @@ int CharacterDisplayer::update(Displayable* entity)
     float drawing_y = m_drawing.get_y();
     //TODO GROM : change function prototype to take MainCharacter and avoid dynamic cast
     MainCharacter* main_character = dynamic_cast<MainCharacter*>(entity);
-    if (main_character->hasState(INVINCIBLE))
+    double character_update_delay = main_character->get_update_delay();
+    if (character_update_delay!=m_update_delay)
     {
-        m_drawing.set_color(1,0,0,1);
+        update_play_rate(character_update_delay);
     }
-    else if (main_character->hasState(DRUNK))
+    if (main_character->hasState(DRUNK))
     {
         m_drawing.set_color(0,0.5,0,1);
+    }
+    else if (main_character->hasState(INVINCIBLE))
+    {
+        m_drawing.set_color(0.5,0,0,1);
+    }
+    else if (main_character->hasState(FAST))
+    {
+        m_drawing.set_color(0,0,0.5,1);
     }
     else
     {
@@ -70,7 +89,7 @@ int CharacterDisplayer::update(Displayable* entity)
         {
           m_anim_collection.loop_all(false); 
         }
-    update_pos(LPoint3f(x, y, m_altitude));    
+    update_pos(LPoint3f(x, y, m_altitude), m_update_delay);    
     return 0;
 }
 

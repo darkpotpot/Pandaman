@@ -30,7 +30,7 @@ void CommandCanceler::launch_command()
 void launchCommand(const Event * theEvent, void * data)
 { ((CommandLauncher*)data)->launch_command(); }
 
-Controler::Controler(KeyboardManager* km):m_character(NULL)
+Controler::Controler(KeyboardManager* km):m_character(NULL), m_last_update_time(0.)
 { initCommands(km); }
 
 void Controler::initCommands(KeyboardManager* km)
@@ -64,9 +64,12 @@ bool Controler::get_command_state(Command command)
 {
     return m_command_state[command];
 }
-void Controler::update()
+void Controler::update(double current_time)
 {
     if (m_character == NULL){
+        return;
+    }
+    if (current_time<m_last_update_time+m_character->get_update_delay()){
         return;
     }
     if (!m_character->command_list_empty())
@@ -82,6 +85,7 @@ void Controler::update()
                 }
             } 
         }
+    m_last_update_time = current_time;
 }
 
 Controler::~Controler()

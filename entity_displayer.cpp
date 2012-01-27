@@ -6,7 +6,7 @@
 #include "cMetaInterval.h"
 
 #include "character_displayer.h"
-#include "global.h"
+
 #include <string>
 #include <cmath>
 #include <stdlib.h>
@@ -73,7 +73,7 @@ int EntityDisplayer::update(Displayable* entity)
     return 0;
 }
 
-void EntityDisplayer::update_pos(LPoint3f new_pos)
+void EntityDisplayer::update_pos(LPoint3f new_pos, double update_delay)
 {
     LPoint3f old_pos = m_drawing.get_pos();
     clear_lerp_ifn();
@@ -86,14 +86,14 @@ void EntityDisplayer::update_pos(LPoint3f new_pos)
     if (old_hpr.get_x()-new_hpr.get_x()<-180)
         {old_hpr = LPoint3f(old_hpr.get_x()+360.,0.,0.);
         }
-    double pos_update_time = UPDATE_TIME;
+    double pos_update_time = update_delay;
     if (old_hpr!=new_hpr)
     {
         add_hpr_lerp(old_hpr, new_hpr, pos_update_time*0.50);
         pos_update_time = pos_update_time*0.5;
     }
     add_pos_lerp(old_pos, new_pos, pos_update_time);
-    m_PosPace->start(0., UPDATE_TIME, 1.);
+    m_PosPace->start(0., update_delay, 1.);
  }   
  
 void EntityDisplayer::clear_lerp_ifn()

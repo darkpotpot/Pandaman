@@ -3,5 +3,6 @@
 
 extern int CASE_RATIO;
 extern double UPDATE_TIME;
+extern double FAST_BONUS_RATIO;
 
 #endif

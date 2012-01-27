@@ -23,6 +23,8 @@ public:
 private:
     AnimControlCollection m_anim_collection;
     void init_animation(ModelManager* model_manager);
+    void update_play_rate(double new_update_delay);
+    double m_update_delay;
     
 };
 

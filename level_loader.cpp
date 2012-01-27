@@ -70,7 +70,7 @@ CellInfo LevelLoader::getCellElem(string gid){
 	{
         cellType = FOOD;
 	}
-	else if (tileset == string("speed.tsx"))
+	else if (tileset == string("fast.tsx"))
 	{
 		cellType = BONUS;
         cellAdditionalInfo = FAST;
