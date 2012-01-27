@@ -53,6 +53,10 @@ int CharacterDisplayer::update(Displayable* entity)
     {
         m_drawing.set_color(1,0,0,1);
     }
+    else if (main_character->hasState(DRUNK))
+    {
+        m_drawing.set_color(0,0.5,0,1);
+    }
     else
     {
         m_drawing.set_color_off();

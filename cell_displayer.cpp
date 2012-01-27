@@ -3,6 +3,9 @@
 #include "entity_displayer.h"
 #include "character_displayer.h"
 #include "global.h"
+#include "characterstate.h"
+#include "bonus.h"
+#include <string>
 
 CellElemDisplayer::CellElemDisplayer(int x, int y, string model_name, NodePath *parentNode, ModelManager* model_manager)
 {
@@ -15,6 +18,26 @@ CellElemDisplayer::CellElemDisplayer(int x, int y, string model_name, NodePath *
      mDrawing.set_pos( posX, posY, 0.);
 }
 
+EntityDisplayer* get_bonus_displayer(CellElem* bonus, NodePath* parentNode, ModelManager* model_manager)
+{
+    CharStateType bonus_type = dynamic_cast<Bonus*>(bonus)->getBonusType();
+    string model_name;
+    switch(bonus_type){
+        case INVINCIBLE:
+            model_name = "teapot";
+            break;
+        case FAST:
+            model_name = "teapot";
+            break;
+        case DRUNK:
+            model_name = "teapot";
+            break;
+        case RANDOM:
+            model_name = "teapot";
+            break;
+    }
+    return new EntityDisplayer("teapot", parentNode, model_manager, 5, LPoint3f(1,1,1));
+}
 
 void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* model_manager){
     for (int i=0; i < grid.getHeight(); i++){
@@ -41,7 +64,8 @@ void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* mode
                         }
                     case BONUS:
                         {
-                        EntityDisplayer * bonus_displayer = new EntityDisplayer("teapot", parentNode, model_manager, 5, LPoint3f(1,1,1));
+                        EntityDisplayer * bonus_displayer = get_bonus_displayer((*it), parentNode, model_manager);
+                            //new EntityDisplayer("teapot", parentNode, model_manager, 5, LPoint3f(1,1,1));
                         (*it)->set_displayer(bonus_displayer);
                         bonus_displayer->update((*it));
                         break;
@@ -51,6 +75,7 @@ void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* mode
         }
     }
 }
+
 
 
 void deleteCellElemDisplayers(Grid& grid){

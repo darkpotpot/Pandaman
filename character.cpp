@@ -4,6 +4,7 @@
 #include "entity.h"
 #include "character.h"
 #include "command.h"
+#include "characterstate.h"
 #include <iostream>
 using namespace std;
 
@@ -42,7 +43,7 @@ void MainCharacter::update(EventManager& event_manager)
         last_command = m_last_command.front();
         m_last_command.pop_front();
     }
-    
+
     switch(last_command)
     {
         case STAY:
@@ -71,6 +72,13 @@ void MainCharacter::update(EventManager& event_manager)
            break;
         }    
     }
+
+    if (hasState(DRUNK))
+    {
+        x_dir = -x_dir;
+        y_dir = -y_dir;
+    }
+
     if (!(x_dir==0 && y_dir==0))
     {
         int new_x = m_x+x_dir;
