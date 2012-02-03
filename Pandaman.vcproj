@@ -193,6 +193,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\detection.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\displayable.cpp"
 				>
 			</File>
@@ -222,6 +226,10 @@
 			</File>
 			<File
 				RelativePath=".\explore_ia.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\follow_ia.cpp"
 				>
 			</File>
 			<File
@@ -269,6 +277,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\main_ia.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\model_manager.cpp"
 				>
 			</File>
@@ -278,6 +290,10 @@
 			</File>
 			<File
 				RelativePath=".\monster_displayer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\point2d.cpp"
 				>
 			</File>
 			<File
@@ -343,6 +359,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\detection.h"
+				>
+			</File>
+			<File
 				RelativePath=".\displayable.h"
 				>
 			</File>
@@ -372,6 +392,10 @@
 			</File>
 			<File
 				RelativePath=".\explore_ia.h"
+				>
+			</File>
+			<File
+				RelativePath=".\follow_ia.h"
 				>
 			</File>
 			<File
@@ -415,6 +439,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\main_ia.h"
+				>
+			</File>
+			<File
 				RelativePath=".\model_manager.h"
 				>
 			</File>
@@ -424,6 +452,14 @@
 			</File>
 			<File
 				RelativePath=".\monster_displayer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\path_finder.h"
+				>
+			</File>
+			<File
+				RelativePath=".\point2d.h"
 				>
 			</File>
 			<File

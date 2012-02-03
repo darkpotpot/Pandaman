@@ -37,13 +37,18 @@ void MainCharacter::update(EventManager& event_manager)
 {
     int x_dir = 0;
     int y_dir = 0;
+
     Command last_command = STAY;
     if (!m_last_command.empty())
     {
+        //for (list<Command>::iterator command_it = m_last_command.begin(); command_it != m_last_command.end(); command_it++)
+        //    {cout<<" command "<< (*command_it); }
+        //cout<<" ---- "<< endl;
+
         last_command = m_last_command.front();
         m_last_command.pop_front();
     }
-
+    
     switch(last_command)
     {
         case STAY:
@@ -92,7 +97,7 @@ void MainCharacter::update(EventManager& event_manager)
 
 int MainCharacter::set_command(Command command)
 {
-    if (m_last_command.size()>=2)
+    if (m_last_command.size()>=COMMAND_STACK_SIZE)
         {
             m_last_command.pop_back();
         }

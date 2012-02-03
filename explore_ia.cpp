@@ -2,27 +2,6 @@
 #include <utility>
 #include <map>
 
-
-
-
-
-Point2d operator+(const Point2d& p1, const Point2d& p2)
-{
-    return Point2d(p1.get_x()+ p2.get_x(), p1.get_y()+p2.get_y()); 
-}
-
-//necessary because in order to be used as key in map...need to be comparable...
-bool operator<(const Point2d& p1, const Point2d& p2)
-{
-    if (p2.get_x()>p1.get_x())
-        {return true;}
-    else if ((p2.get_x()==p1.get_x())&&(p2.get_y()>p1.get_y()))
-        {return true;}
-    else
-        {return false;}
-
-}
-
 list<Point2d> init_directions()
 {
         list<Point2d> accessible_directions;
@@ -63,11 +42,15 @@ void ExploreIA::compute_movement(Entity *entity, Grid* grid, int& x_res, int&y_r
                 m_exploration_map.insert(std::pair<Point2d,int>((*it),0));
             current_value = 0;
             }
-            if (min_value==-1||current_value<min_value)
+            if (min_value==-1||
+                current_value<min_value||
+                ((min_value==current_value)&&(rand()%100>50)))
             {
                 min_value = current_value;
                 best_pos = (*it);
             }
+
+
         }
     if (min_value==-1)
     {

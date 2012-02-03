@@ -4,9 +4,11 @@
 #include "genericAsyncTask.h"
 #include "asyncTaskManager.h"
 #include "cIntervalManager.h"
+
 #include <stdlib.h>
 #include <time.h>
 
+#include "detection.h"
 #include "level_manager.h"
 
 #include "keyboard_manager.h"

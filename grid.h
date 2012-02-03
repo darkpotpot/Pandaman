@@ -14,6 +14,10 @@ class Grid:public Displayable
     public:
         Grid(int sizeX, int sizeY);
         ~Grid();
+        const Cell *const getCell(int x, int y)
+        {
+            return mCells[x][y];
+        }
         bool is_accessible(int x, int y);
         list<CellElem*> getCellElems(int x, int y);
         void addElem(int x, int y, CellElem *elem);

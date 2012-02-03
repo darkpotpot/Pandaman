@@ -16,7 +16,7 @@ Grid::Grid(int width, int height):mWidth(width), mHeight(height){
     }
     for (int i=0; i < width; i++){
         for (int j=0; j<height; j++){
-            mCells[i][j] = new Cell();
+            mCells[i][j] = new Cell(i,j);
         }
     }
 }

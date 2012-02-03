@@ -28,6 +28,8 @@ double SimulationTask::get_time()
 SimuState SimulationTask::update(std::list<CellElem*>& to_delete_elem)
 {
     double frame_time = get_time();
+    //std::cout<<"update time = "<<frame_time-m_last_update_time<<endl;
+    //m_last_update_time = frame_time;
     //if (frame_time<m_last_update_time+UPDATE_TIME)
     //    {return CONTINUE;
     //    }

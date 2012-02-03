@@ -69,9 +69,9 @@ void Controler::update(double current_time)
     if (m_character == NULL){
         return;
     }
-    if (current_time<m_last_update_time+m_character->get_update_delay()){
-        return;
-    }
+    //if (current_time<m_last_update_time+m_character->get_update_delay()){
+    //    return;
+    //}
     if (!m_character->command_list_empty())
         {return; }
     else
