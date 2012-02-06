@@ -293,6 +293,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\path_finding_ia.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\point2d.cpp"
 				>
 			</File>
@@ -326,6 +330,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\abstract_path_finder.h"
+				>
+			</File>
 			<File
 				RelativePath=".\bonus.h"
 				>
@@ -456,6 +464,10 @@
 			</File>
 			<File
 				RelativePath=".\path_finder.h"
+				>
+			</File>
+			<File
+				RelativePath=".\path_finding_ia.h"
 				>
 			</File>
 			<File

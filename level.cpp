@@ -30,7 +30,8 @@ void Level::fillMapCells(TiXmlElement* worldElem, LevelLoader& levelLoader){
                     addEntity(m_character);
                     break;
                 case MONSTER1:
-                    add_monster(new Monster(j, i, m_grid));
+                    
+                    add_monster(create_monster(j, i, m_grid, (MonsterIA)cell.additionalInfo));
                     break;
                 case FOOD:
                     add_food(new Food(j, i), j, i);

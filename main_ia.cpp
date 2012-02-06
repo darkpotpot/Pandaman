@@ -3,13 +3,13 @@
 #include <iostream>
 using namespace std;
 
-MainIA::MainIA(FollowIA* follow_ia, ExploreIA* explore_ia, int visibility_dist)
-: m_visibility_dist(visibility_dist), m_active_ia(NULL), m_explore_ia(explore_ia), m_follow_ia(follow_ia)
+MainIA::MainIA(FollowIA* follow_ia, IA* explore_ia, int visibility_dist)
+: m_visibility_dist(visibility_dist), m_active_ia(NULL), m_default_ia(explore_ia), m_follow_ia(follow_ia)
 {}
 
 MainIA::~MainIA()
 {
-delete m_explore_ia;
+delete m_default_ia;
 delete m_follow_ia;
 }
 
@@ -24,11 +24,11 @@ void MainIA::compute_movement(Entity *entity, Grid* grid, int& x_res, int&y_res)
     if (!panda_detected)
         {
         if (m_active_ia==NULL)
-            {m_active_ia=m_explore_ia;}
+            {m_active_ia=m_default_ia;}
         //once FollowIA is implemented, uncomment
         if ((m_active_ia==m_follow_ia )&&m_follow_ia->finished())
             {
-                m_active_ia=m_explore_ia;
+                m_active_ia=m_default_ia;
             }
         }
     else

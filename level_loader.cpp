@@ -1,7 +1,7 @@
 #include "level_loader.h"
 #include "cell.h"
 #include "characterstate.h"
-
+#include "monster.h"
 
 LevelLoader::LevelLoader(const char* pMapname){
     bool loadOkay = doc.LoadFile(pMapname);
@@ -65,6 +65,12 @@ CellInfo LevelLoader::getCellElem(string gid){
     else if (tileset == string("monster1.tsx"))
 	{
         cellType = MONSTER1;
+        cellAdditionalInfo = ROAMING;
+	}
+    else if (tileset == string("guard_monster.tsx"))
+	{
+        cellType = MONSTER1;
+        cellAdditionalInfo = GUARDING;
 	}
 	else if (tileset == string("food.tsx"))
 	{

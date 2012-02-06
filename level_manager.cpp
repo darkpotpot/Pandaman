@@ -3,7 +3,7 @@
 #include "monster.h"
 #include "simu_state.h"
 
-int NB_LEVELS = 3;
+int NB_LEVELS = 4;
 
 
 LevelManager::LevelManager(WindowFramework *window, PandaFramework* framework, KeyboardManager* km):mDisplayer(LevelDisplayer(window, framework, km)), mControler(Controler(km)), mLevel(NULL), mSimulationTask(NULL), mCurrentLevel(0){
