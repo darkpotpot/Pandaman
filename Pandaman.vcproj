@@ -189,6 +189,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\color_modifier.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\controler.cpp"
 				>
 			</File>
@@ -356,6 +360,10 @@
 			</File>
 			<File
 				RelativePath=".\characterstate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\color_modifier.h"
 				>
 			</File>
 			<File

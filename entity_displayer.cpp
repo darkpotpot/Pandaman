@@ -31,7 +31,7 @@ extern double UPDATE_TIME;
 
 int EntityDisplayer::idx=0;
 
-EntityDisplayer::EntityDisplayer(string model_name, NodePath *parentNode, ModelManager* model_manager)
+EntityDisplayer::EntityDisplayer(string model_name, NodePath *parentNode, ModelManager* model_manager, Color color)
 :m_model_name(model_name),mParentNode(parentNode), m_PosPace(NULL), m_altitude(0.)
 {
     EntityDisplayer::idx = EntityDisplayer::idx+1;
@@ -40,16 +40,18 @@ EntityDisplayer::EntityDisplayer(string model_name, NodePath *parentNode, ModelM
 	drawing.set_scale(0.008, 0.008, 0.008);
 	drawing.reparent_to(m_drawing);
     m_drawing.reparent_to(*mParentNode);
+    apply_color(&m_drawing, color);
     m_PosPace = new CMetaInterval(string("pandaPace")+to_string(EntityDisplayer::idx));
 }
 
-EntityDisplayer::EntityDisplayer(string model_name, NodePath *parentNode, ModelManager* model_manager, float altitude, LPoint3f scale)
+EntityDisplayer::EntityDisplayer(string model_name, NodePath *parentNode, ModelManager* model_manager, float altitude, LPoint3f scale, Color color)
 :m_model_name(model_name),mParentNode(parentNode), m_PosPace(NULL), m_altitude(altitude)
 {
     EntityDisplayer::idx = EntityDisplayer::idx+1;
     m_drawing = model_manager->loadModel(model_name);
     m_drawing.reparent_to(*mParentNode);
     m_drawing.set_scale(scale);
+    apply_color(&m_drawing, color);
     m_PosPace = new CMetaInterval("pandaPace"+to_string(EntityDisplayer::idx));
 }
 

@@ -10,13 +10,14 @@
 #include <string>
 #include "model_manager.h"
 #include "global.h"
+#include "color_modifier.h"
 
 
 class EntityDisplayer : public Displayer
 {
 public:
-    EntityDisplayer(string model_name, NodePath *parentNode, ModelManager *model_manager);
-    EntityDisplayer(string model_name, NodePath *parentNode, ModelManager *model_manager, float altitude, LPoint3f scale);
+    EntityDisplayer(string model_name, NodePath *parentNode, ModelManager *model_manager, Color color =NO_COLOR);
+    EntityDisplayer(string model_name, NodePath *parentNode, ModelManager *model_manager, float altitude, LPoint3f scale, Color color =NO_COLOR);
     virtual ~EntityDisplayer();
     virtual int update(Displayable* entity);
 	NodePath getDrawing() {return m_drawing;};

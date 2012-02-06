@@ -12,6 +12,7 @@
 #include "character.h"
 #include "entity_displayer.h"
 #include "global.h"
+#include "color_modifier.h"
 #include <string>
 #include <cmath>
 
@@ -66,19 +67,23 @@ int CharacterDisplayer::update(Displayable* entity)
     }
     if (main_character->hasState(DRUNK))
     {
-        m_drawing.set_color(0,0.5,0,1);
+        apply_color(&m_drawing, GREEN);
+        //m_drawing.set_color(0,0.5,0,1);
     }
     else if (main_character->hasState(INVINCIBLE))
     {
-        m_drawing.set_color(0.5,0,0,1);
+        apply_color(&m_drawing, RED);
+        //m_drawing.set_color(0.5,0,0,1);
     }
     else if (main_character->hasState(FAST))
     {
-        m_drawing.set_color(0,0,0.5,1);
+        apply_color(&m_drawing, BLUE);
+        //m_drawing.set_color(0,0,0.5,1);
     }
     else
     {
-        m_drawing.set_color_off();
+        apply_color(&m_drawing, NO_COLOR);
+        //m_drawing.set_color_off();
     }
     if (max(abs(x-drawing_x),abs(y-drawing_y)) <0.01*CASE_RATIO)
         {

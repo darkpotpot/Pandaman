@@ -6,6 +6,7 @@
 #include "characterstate.h"
 #include "bonus.h"
 #include <string>
+#include "color_modifier.h"
 
 CellElemDisplayer::CellElemDisplayer(int x, int y, string model_name, NodePath *parentNode, ModelManager* model_manager)
 {
@@ -21,22 +22,27 @@ CellElemDisplayer::CellElemDisplayer(int x, int y, string model_name, NodePath *
 EntityDisplayer* get_bonus_displayer(CellElem* bonus, NodePath* parentNode, ModelManager* model_manager)
 {
     CharStateType bonus_type = dynamic_cast<Bonus*>(bonus)->getBonusType();
+    Color color;
     string model_name;
     switch(bonus_type){
         case INVINCIBLE:
             model_name = "teapot";
+            color = RED;
             break;
         case FAST:
             model_name = "teapot";
+            color = BLUE;
             break;
         case DRUNK:
             model_name = "teapot";
+            color = GREEN;
             break;
         case RANDOM:
             model_name = "teapot";
+            color = NO_COLOR;
             break;
     }
-    return new EntityDisplayer("teapot", parentNode, model_manager, 5, LPoint3f(1,1,1));
+    return new EntityDisplayer("teapot", parentNode, model_manager, 5, LPoint3f(1,1,1), color);
 }
 
 void initCellElemDisplayers(Grid& grid, NodePath *parentNode, ModelManager* model_manager){
