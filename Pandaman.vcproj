@@ -165,23 +165,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\bonus.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\cell.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\cell_displayer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\character.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\character_displayer.cpp"
 				>
 			</File>
 			<File
@@ -189,35 +173,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\color_modifier.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\controler.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\detection.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\displayable.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\displayer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\drawing_helpers.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\entity.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\entity_displayer.cpp"
 				>
 			</File>
 			<File
@@ -229,18 +189,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\explore_ia.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\follow_ia.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\food.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\global.cpp"
 				>
 			</File>
@@ -249,55 +197,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\heightfield_displayer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ia.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\keyboard_manager.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\level.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\level_displayer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\level_loader.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\level_manager.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\main.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\main_ia.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\model_manager.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\monster.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\monster_displayer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\path_finding_ia.cpp"
 				>
 			</File>
 			<File
@@ -309,25 +213,141 @@
 				>
 			</File>
 			<File
-				RelativePath=".\tinyxml\tinystr.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\tinyxml\tinyxml.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\tinyxml\tinyxmlerror.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\tinyxml\tinyxmlparser.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\world_camera.cpp"
 				>
 			</File>
+			<Filter
+				Name="IA"
+				>
+				<File
+					RelativePath=".\detection.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\explore_ia.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\follow_ia.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ia.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\main_ia.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\path_finding_ia.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="displayer"
+				>
+				<File
+					RelativePath=".\cell_displayer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\character_displayer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\color_modifier.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\displayer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\drawing_helpers.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\entity_displayer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\heightfield_displayer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\level_displayer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\model_manager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\monster_displayer.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="entities"
+				>
+				<File
+					RelativePath=".\bonus.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\character.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\entity.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\food.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\monster.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="xml"
+				>
+				<File
+					RelativePath=".\tinyxml\tinystr.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\tinyxml\tinyxml.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\tinyxml\tinyxmlerror.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\tinyxml\tinyxmlparser.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="level"
+				>
+				<File
+					RelativePath=".\level.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\level_loader.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\level_manager.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -335,35 +355,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\abstract_path_finder.h"
-				>
-			</File>
-			<File
-				RelativePath=".\bonus.h"
-				>
-			</File>
-			<File
 				RelativePath=".\cell.h"
 				>
 			</File>
 			<File
-				RelativePath=".\cell_displayer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\character.h"
-				>
-			</File>
-			<File
-				RelativePath=".\character_displayer.h"
-				>
-			</File>
-			<File
 				RelativePath=".\characterstate.h"
-				>
-			</File>
-			<File
-				RelativePath=".\color_modifier.h"
 				>
 			</File>
 			<File
@@ -375,27 +371,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\detection.h"
-				>
-			</File>
-			<File
 				RelativePath=".\displayable.h"
 				>
 			</File>
 			<File
 				RelativePath=".\displayer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\drawing_helpers.h"
-				>
-			</File>
-			<File
-				RelativePath=".\entity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\entity_displayer.h"
 				>
 			</File>
 			<File
@@ -407,18 +387,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\explore_ia.h"
-				>
-			</File>
-			<File
-				RelativePath=".\follow_ia.h"
-				>
-			</File>
-			<File
-				RelativePath=".\food.h"
-				>
-			</File>
-			<File
 				RelativePath=".\global.h"
 				>
 			</File>
@@ -427,55 +395,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\heightfield_displayer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ia.h"
-				>
-			</File>
-			<File
 				RelativePath=".\keyboard_manager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\level.h"
-				>
-			</File>
-			<File
-				RelativePath=".\level_displayer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\level_loader.h"
-				>
-			</File>
-			<File
-				RelativePath=".\level_manager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\main_ia.h"
-				>
-			</File>
-			<File
-				RelativePath=".\model_manager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\monster.h"
-				>
-			</File>
-			<File
-				RelativePath=".\monster_displayer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\path_finder.h"
-				>
-			</File>
-			<File
-				RelativePath=".\path_finding_ia.h"
 				>
 			</File>
 			<File
@@ -491,17 +411,137 @@
 				>
 			</File>
 			<File
-				RelativePath=".\tinyxml\tinystr.h"
-				>
-			</File>
-			<File
-				RelativePath=".\tinyxml\tinyxml.h"
-				>
-			</File>
-			<File
 				RelativePath=".\world_camera.h"
 				>
 			</File>
+			<Filter
+				Name="IA"
+				>
+				<File
+					RelativePath=".\abstract_path_finder.h"
+					>
+				</File>
+				<File
+					RelativePath=".\detection.h"
+					>
+				</File>
+				<File
+					RelativePath=".\explore_ia.h"
+					>
+				</File>
+				<File
+					RelativePath=".\follow_ia.h"
+					>
+				</File>
+				<File
+					RelativePath=".\ia.h"
+					>
+				</File>
+				<File
+					RelativePath=".\main_ia.h"
+					>
+				</File>
+				<File
+					RelativePath=".\path_finder.h"
+					>
+				</File>
+				<File
+					RelativePath=".\path_finding_ia.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="displayers"
+				>
+				<File
+					RelativePath=".\cell_displayer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\character_displayer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\color_modifier.h"
+					>
+				</File>
+				<File
+					RelativePath=".\drawing_helpers.h"
+					>
+				</File>
+				<File
+					RelativePath=".\entity_displayer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\heightfield_displayer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\level_displayer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\model_manager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\monster_displayer.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="entities"
+				>
+				<File
+					RelativePath=".\bonus.h"
+					>
+				</File>
+				<File
+					RelativePath=".\character.h"
+					>
+				</File>
+				<File
+					RelativePath=".\entity.h"
+					>
+				</File>
+				<File
+					RelativePath=".\food.h"
+					>
+				</File>
+				<File
+					RelativePath=".\monster.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="xml"
+				>
+				<File
+					RelativePath=".\tinyxml\tinystr.h"
+					>
+				</File>
+				<File
+					RelativePath=".\tinyxml\tinyxml.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="level"
+				>
+				<File
+					RelativePath=".\level.h"
+					>
+				</File>
+				<File
+					RelativePath=".\level_loader.h"
+					>
+				</File>
+				<File
+					RelativePath=".\level_manager.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Resource Files"

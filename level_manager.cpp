@@ -8,7 +8,7 @@
 #include "texture.h"
 #include "texturePool.h"
 //
-int NB_LEVELS = 4;
+int NB_LEVELS = 5;
 
 
 LevelManager::LevelManager(WindowFramework *window, PandaFramework* framework, KeyboardManager* km):mDisplayer(LevelDisplayer(window, framework, km)), mControler(Controler(km)), mLevel(NULL), mSimulationTask(NULL), mCurrentLevel(0), m_paused(true)
