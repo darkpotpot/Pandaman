@@ -10,6 +10,7 @@
 #include "asyncTask.h"
 #include "keyboard_manager.h"
 #include "nodePath.h"
+#include "level_interface.h"
 
 class LevelManager:public AsyncTask{
     public:
@@ -25,6 +26,7 @@ class LevelManager:public AsyncTask{
         virtual AsyncTask::DoneStatus do_task();
     private:
         void init_instruction_screen(WindowFramework *window);
+		void init_2DGui(WindowFramework *window);
         void deleteCellElems(std::list<CellElem*>& to_delete_elem);
         //
         Level* mLevel;
@@ -36,6 +38,8 @@ class LevelManager:public AsyncTask{
 		void cleanCurrentLevelIfn();
         bool m_paused;
         NodePath* m_instruction_node;
+		LevelInterface m_gameInterface;
+		int m_dLifes;
 };
 
 #endif

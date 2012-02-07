@@ -9,9 +9,17 @@
 #include "texturePool.h"
 //
 int NB_LEVELS = 5;
+int NB_LIFES = 3;
 
-
-LevelManager::LevelManager(WindowFramework *window, PandaFramework* framework, KeyboardManager* km):mDisplayer(LevelDisplayer(window, framework, km)), mControler(Controler(km)), mLevel(NULL), mSimulationTask(NULL), mCurrentLevel(0), m_paused(true)
+LevelManager::LevelManager(WindowFramework *window, PandaFramework* framework, KeyboardManager* km):
+mDisplayer(LevelDisplayer(window, framework, km)), 
+mControler(Controler(km)),
+mLevel(NULL),
+mSimulationTask(NULL),
+mCurrentLevel(0),
+m_paused(true),
+m_gameInterface(window),
+m_dLifes(NB_LIFES)
 {
     init_instruction_screen(window);
 }
@@ -38,14 +46,14 @@ void LevelManager::start()
 {
     cout<<"starting!!"<<endl;
     m_instruction_node->hide();
+	m_gameInterface.show();
     m_paused = false;
-
 }
 void LevelManager::pause()
 {
    m_instruction_node->show();
+   m_gameInterface.hide();
    m_paused = true;
-
 }
 
 void LevelManager::loadLevel(const char* pMapname){
@@ -62,6 +70,7 @@ void LevelManager::loadLevel(const char* pMapname){
     //taskMgr->add(mSimulationTask);
     //
     mDisplayer.displayLevel(*mLevel);
+	m_gameInterface.set_lifes(m_dLifes);
 }
 
 void LevelManager::cleanCurrentLevelIfn()
@@ -115,6 +124,7 @@ AsyncTask::DoneStatus LevelManager::do_task(){
 	}
 	else if (simuState==RESTART)
 	{
+		m_dLifes--;
 		cleanCurrentLevelIfn();
 		loadCurrentLevel();
 	}

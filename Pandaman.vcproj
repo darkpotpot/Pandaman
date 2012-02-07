@@ -348,6 +348,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="gui"
+				>
+				<File
+					RelativePath=".\level_interface.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -539,6 +547,14 @@
 				</File>
 				<File
 					RelativePath=".\level_manager.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="gui"
+				>
+				<File
+					RelativePath=".\level_interface.h"
 					>
 				</File>
 			</Filter>
