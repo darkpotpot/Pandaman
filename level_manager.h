@@ -9,6 +9,7 @@
 #include "simu.h"
 #include "asyncTask.h"
 #include "keyboard_manager.h"
+#include "nodePath.h"
 
 class LevelManager:public AsyncTask{
     public:
@@ -17,10 +18,13 @@ class LevelManager:public AsyncTask{
         void loadLevel(const char* pMapname);
         void nextLevel();
         void previousLevel();
+        void start();
+        void pause();
         ALLOC_DELETED_CHAIN(LevelManager);
     protected:
         virtual AsyncTask::DoneStatus do_task();
     private:
+        void init_instruction_screen(WindowFramework *window);
         void deleteCellElems(std::list<CellElem*>& to_delete_elem);
         //
         Level* mLevel;
@@ -30,6 +34,8 @@ class LevelManager:public AsyncTask{
         int mCurrentLevel;
         void loadCurrentLevel();
 		void cleanCurrentLevelIfn();
+        bool m_paused;
+        NodePath* m_instruction_node;
 };
 
 #endif

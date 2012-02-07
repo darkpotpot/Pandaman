@@ -2,17 +2,50 @@
 #include "asyncTaskManager.h"
 #include "monster.h"
 #include "simu_state.h"
+//
 
+#include "cardMaker.h"
+#include "texture.h"
+#include "texturePool.h"
+//
 int NB_LEVELS = 4;
 
 
-LevelManager::LevelManager(WindowFramework *window, PandaFramework* framework, KeyboardManager* km):mDisplayer(LevelDisplayer(window, framework, km)), mControler(Controler(km)), mLevel(NULL), mSimulationTask(NULL), mCurrentLevel(0){
+LevelManager::LevelManager(WindowFramework *window, PandaFramework* framework, KeyboardManager* km):mDisplayer(LevelDisplayer(window, framework, km)), mControler(Controler(km)), mLevel(NULL), mSimulationTask(NULL), mCurrentLevel(0), m_paused(true)
+{
+    init_instruction_screen(window);
 }
 
 LevelManager::~LevelManager()
 {
     cleanCurrentLevelIfn();
 	remove();
+}
+
+void LevelManager::init_instruction_screen(WindowFramework *window)
+{
+PT(Texture) tex;
+tex = TexturePool::load_texture( "resources/instructions.png"); 
+CardMaker cm("cardMaker");
+cm.set_frame_fullscreen_quad();
+PT(PandaNode) readyCard = cm.generate(); 
+m_instruction_node = new NodePath(readyCard);
+m_instruction_node->set_texture( tex ); 
+m_instruction_node->reparent_to(window->get_render_2d());
+}
+
+void LevelManager::start()
+{
+    cout<<"starting!!"<<endl;
+    m_instruction_node->hide();
+    m_paused = false;
+
+}
+void LevelManager::pause()
+{
+   m_instruction_node->show();
+   m_paused = true;
+
 }
 
 void LevelManager::loadLevel(const char* pMapname){
@@ -68,6 +101,8 @@ void LevelManager::previousLevel(){
 }
 
 AsyncTask::DoneStatus LevelManager::do_task(){
+    if (m_paused)
+    {    return AsyncTask::DS_cont;}
 	SimuState simuState;
     std::list<CellElem*> to_delete_elem;
     if(mSimulationTask!=NULL)

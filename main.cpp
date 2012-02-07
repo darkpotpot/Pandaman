@@ -1,6 +1,7 @@
 #include "pandaFramework.h"
 #include "pandaSystem.h"
 
+
 #include "genericAsyncTask.h"
 #include "asyncTaskManager.h"
 #include "cIntervalManager.h"
@@ -12,6 +13,7 @@
 #include "level_manager.h"
 
 #include "keyboard_manager.h"
+
 
 AsyncTask::DoneStatus update_lerp(GenericAsyncTask* task, void* data) {
     ((CIntervalManager*)data)->step();
@@ -28,10 +30,19 @@ void previousLevel(const Event * theEvent, void * data){
     levelManager->previousLevel();
 }
 
-void test(const Event * theEvent, void * data){
-    cout << "toto" << endl;
+
+void pause(const Event * theEvent, void * data){
+    LevelManager* levelManager = (LevelManager*)data;
+    levelManager->pause();
+
 }
 
+
+void start(const Event * theEvent, void * data){
+    LevelManager* levelManager = (LevelManager*)data;
+    levelManager->start();
+
+}
 int main(int argc, char *argv[]) {
     srand(time(NULL));
     PandaFramework framework;
@@ -45,7 +56,9 @@ int main(int argc, char *argv[]) {
     level_manager.nextLevel();
 	//hack pour changer de niveau manuellement
     framework.define_key("+", "LevelUp", nextLevel, &level_manager); 
-    framework.define_key("-", "LevelDown", previousLevel, &level_manager); 
+    framework.define_key("-", "LevelDown", previousLevel, &level_manager);
+    framework.define_key("space", "start", start, &level_manager);
+    framework.define_key("escape", "pause", pause, &level_manager);
 
     PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();
     taskMgr->add(new GenericAsyncTask("Update lerp", &update_lerp, (void*) CIntervalManager::get_global_ptr()));
